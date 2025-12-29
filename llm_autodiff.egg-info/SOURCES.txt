@@ -1,0 +1,9 @@
+README.md
+setup.py
+llm_autodiff.egg-info/PKG-INFO
+llm_autodiff.egg-info/SOURCES.txt
+llm_autodiff.egg-info/dependency_links.txt
+llm_autodiff.egg-info/top_level.txt
+src/__init__.py
+src/agent.py
+src/client.py

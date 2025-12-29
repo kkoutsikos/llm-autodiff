@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# Models & Data (Too big for GitHub)
+*.pth
+*.bin
+*.gguf
+model_checkpoints/
+data/
+
+# IDEs
+.vscode/
+.idea/
