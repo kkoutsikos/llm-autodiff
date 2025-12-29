@@ -1,3 +1,4 @@
+import uuid
 import adalflow as adal
 # Import from specific submodules to avoid ImportError
 from adalflow.core.component import Component
