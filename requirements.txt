@@ -1,0 +1,10 @@
+torch
+transformers
+accelerate
+bitsandbytes
+adalflow
+mlflow
+scipy
+sentencepiece
+protobuf
+datasets
