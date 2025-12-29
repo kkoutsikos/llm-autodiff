@@ -7,10 +7,22 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from src.client import get_client
 from src.agent import MathStudent
-from src.utils import load_gsm8k_subset, parse_model_answer # <--- NEW IMPORT
+from src.utils import load_gsm8k_subset, parse_model_answer 
 
-from adalflow.optim import TextualGradientOptimizer
-from adalflow.optim.types import Gradient
+from adalflow.core.model_client import ModelClient
+try:
+    
+    from adalflow.optim.text_grad.tgd_optimizer import TGDOptimizer as TextualGradientOptimizer
+except ImportError:
+    
+    from adalflow.optim import TGDOptimizer as TextualGradientOptimizer
+
+
+try:
+    from adalflow.optim import Gradient
+except ImportError:
+    # Fallback for different versions
+    from adalflow.core.types import Gradient
 
 def train():
     # 1. Setup Logging
