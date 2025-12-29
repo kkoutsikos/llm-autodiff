@@ -1,6 +1,10 @@
 import torch
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
-from adalflow.core import ModelClient
+import adalflow as adal
+# Import from specific submodules to avoid ImportError
+from adalflow.core.component import Component
+from adalflow.core.generator import Generator
+from adalflow.optim.parameter import Parameter
 
 # Global Cache to prevent reloading shards between calls
 _SHARED_CLIENT = None

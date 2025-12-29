@@ -1,5 +1,5 @@
 import adalflow as adal
-from adalflow.core import Component, Generator, Parameter
+from adalflow import Component, Generator, Parameter
 
 class MathStudent(Component):
     def __init__(self, client):
