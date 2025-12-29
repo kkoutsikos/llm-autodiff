@@ -10,7 +10,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from src.client import get_client
 from src.agent import MathStudent
-from src.utils import load_gsm8k_subset, parse_model_answer 
+from src.utils import load_gsm8k_dataset, parse_model_answer 
 
 from adalflow.core.model_client import ModelClient
 try:
