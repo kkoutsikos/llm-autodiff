@@ -5,7 +5,7 @@ import adalflow as adal
 from adalflow.core.component import Component
 from adalflow.core.generator import Generator
 from adalflow.optim.parameter import Parameter
-
+from adalflow.core.model_client import ModelClient
 # Global Cache to prevent reloading shards between calls
 _SHARED_CLIENT = None
 
