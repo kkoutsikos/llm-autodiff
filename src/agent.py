@@ -9,7 +9,7 @@ from adalflow.core.types import GeneratorOutput
 class MathStudent(Component):
     def __init__(self, client):
         super().__init__()
-        self.client = client  # <--- Use client directly
+        self.client = client  
         
         self.system_prompt = Parameter(
             data="You are a math helper. Question: {{input_str}}",
@@ -30,6 +30,6 @@ class MathStudent(Component):
         # 3. Package the result for the Optimizer
         # The optimizer looks at 'id' and 'data'
         return GeneratorOutput(
-            id=str(uuid.uuid4()), # Unique ID for this run
-            data=response_text,   # The model's answer
+            id=str(uuid.uuid4()), 
+            data=response_text,   
         )

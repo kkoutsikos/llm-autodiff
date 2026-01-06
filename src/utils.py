@@ -1,9 +1,6 @@
 import re
 from datasets import load_dataset
 
-import re
-from datasets import load_dataset
-
 def load_gsm8k_dataset(split="train", n=20):
     """
     Returns a list of dictionaries for cleaner iteration.

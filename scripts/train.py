@@ -22,7 +22,7 @@ except ImportError:
 
 
 try:
-    from adalflow.optim import Gradient
+    from adalflow.optim.gradient import Gradient
 except ImportError:
     # Fallback for different versions
     from adalflow.core.types import Gradient
