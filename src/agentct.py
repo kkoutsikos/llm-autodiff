@@ -1,8 +1,11 @@
 import uuid
-import adalflow.core.types as types
+import adalflow as adal
+# Import from specific submodules to avoid ImportError
 from adalflow.core.component import Component
-from adalflow.core.parameter import Parameter
-
+from adalflow.core.generator import Generator
+from adalflow.optim.parameter import Parameter
+from adalflow.core.types import GeneratorOutput 
+from adalflow.core import types
 class ObjectCountStudent(Component):
     def __init__(self, client):
         super().__init__()

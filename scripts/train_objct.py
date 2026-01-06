@@ -8,9 +8,14 @@ sys.path.append(os.getcwd())
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from src.client import LocalLLMClient
-from src.agent import ObjectCountStudent
+from src.agentct import ObjectCountStudent
 from src.utils import load_bbh_object_count, parse_count_answer
-from adalflow.optim.types import Gradient
+try:
+    from adalflow.optim import Gradient
+except ImportError:
+    # Fallback for different versions
+    from adalflow.core.types import Gradient
+# --- ADALFLOW IMPORTS ---
 
 # ==========================================
 # 1. THE RESEARCH OPTIMIZER
