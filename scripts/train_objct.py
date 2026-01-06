@@ -15,32 +15,54 @@ try:
 except ImportError:
     # Fallback for different versions
     from adalflow.core.types import Gradient
-# --- ADALFLOW IMPORTS ---
 
 # ==========================================
-# 1. THE RESEARCH OPTIMIZER
+# 1. CUSTOM DATA STRUCTURES (The Fix)
+# ==========================================
+class ResearchGradient:
+    """
+    A simple container to hold the critique and context.
+    We use this INSTEAD of AdalFlow's Gradient to avoid version conflicts.
+    """
+    def __init__(self, data, from_response, to_pred, score=0.0):
+        self.data = data               # The Teacher's Critique (String)
+        self.from_response = from_response # The Student's Output (MockTrace)
+        self.to_pred = to_pred         # The Ground Truth (MockTrace)
+        self.score = score
+
+class MockTrace:
+    def __init__(self, data, name="mock"):
+        self.id = str(uuid.uuid4())
+        self.name = name
+        self.data = data
+        self.component_trace = self
+# ==========================================
+# 2. THE RESEARCH OPTIMIZER
 # ==========================================
 class ResearchOptimizer:
     def __init__(self, params, teacher_client):
         self.params = list(params)
-        self.client = teacher_client # Uses the Strong Model (7B)
+        self.client = teacher_client 
 
     def step(self):
         for param in self.params:
-            if not getattr(param, "gradients", None): continue
+            # We access the list directly to find our ResearchGradient objects
+            grads = getattr(param, "gradients", [])
+            if not grads: continue
             
-            print(f"\n[OPTIMIZER] 🧠 Teacher (7B) is analyzing {len(param.gradients)} failures...")
+            print(f"\n[OPTIMIZER] 🧠 Teacher (7B) is analyzing {len(grads)} failures...")
             
-            # 1. Aggregate Critiques from the batch
+            # 1. Aggregate Critiques
             error_log = ""
-            for i, grad in enumerate(param.gradients):
-                q = grad.from_response.data
+            for i, grad in enumerate(grads):
+                # NOW this works because 'grad' is our custom ResearchGradient
+                q = grad.from_response.data 
                 truth = grad.to_pred.data
                 critique = grad.data
-                # Truncate question for prompt safety
+                
                 error_log += f"Example {i+1}:\n- Question: {q[:150]}...\n- Target: {truth}\n- Teacher Critique: {critique}\n\n"
 
-            # 2. Meta-Prompt: The "Gradient Descent" Logic
+            # 2. Meta-Prompt
             meta_prompt = [
                 {"role": "system", "content": "You are an expert Prompt Engineer optimizing a small LLM."},
                 {"role": "user", "content": f"""
@@ -60,35 +82,22 @@ Output ONLY the new prompt text. Do not explain.
 """}
             ]
 
-            # 3. Generate New Prompt (Update Weights)
+            # 3. Generate New Prompt
             new_prompt = self.client.call(api_kwargs={"messages": meta_prompt})
-            
-            # Clean up potential artifacts
             clean_prompt = new_prompt.strip().replace('"', '')
             print(f"[OPTIMIZER] 💡 New Prompt Proposed: {clean_prompt}")
             
-            # Apply Update
+            # 4. Apply Update & Clear
             param.data = clean_prompt
-            param.reset_gradients()
-
-# ==========================================
-# 2. DATA WRAPPER
-# ==========================================
-class MockTrace:
-    def __init__(self, data, name="mock"):
-        self.id = str(uuid.uuid4())
-        self.name = name
-        self.data = data
+            param.gradients = []
 
 # ==========================================
 # 3. MAIN TRAINING LOOP
 # ==========================================
 def train():
-    print("🚀 Starting Dual-Model BBH Experiment...")
+    print("🚀 Starting Dual-Model BBH Experiment (Robust Mode)...")
 
     # --- LOAD MODELS ---
-    # This fits on Colab T4 because we use 4-bit quantization for both.
-    
     print("\n[1/2] Loading TEACHER (Qwen 2.5 7B)...")
     teacher_client = LocalLLMClient("Qwen/Qwen2.5-7B-Instruct")
     
@@ -99,52 +108,57 @@ def train():
     student = ObjectCountStudent(student_client)
     optimizer = ResearchOptimizer(student.parameters(), teacher_client)
     
-    # Load Data (5 hard examples to start)
-    train_data = load_bbh_object_count(n=5)
+    # Load Data
+    train_data = load_bbh_object_count(n=15)
     
     print(f"\n[INIT PROMPT] {student.system_prompt.data}")
 
     # --- EPOCH LOOP ---
-    for epoch in range(1, 4):
+    for epoch in range(1, 11):
         print(f"\n================ EPOCH {epoch} ================")
-        student.system_prompt.reset_gradients()
+        
+        # Ensure gradients are cleared at start of epoch
+        student.system_prompt.gradients = []
+        
         errors = 0
         
         for item in train_data:
             q, truth = item['question'], item['truth']
             
-            # 1. FORWARD PASS (Student 1.5B)
-            # The student is fast!
+            # 1. FORWARD (Student)
             response = student(q)
             pred_raw = response.data
             pred_parsed = parse_count_answer(pred_raw)
             
-            # 2. EVALUATION
+            # 2. EVAL
             if pred_parsed == truth:
                 print(f"✅ PASS | Pred: {pred_parsed} == True: {truth}")
             else:
                 print(f"❌ FAIL | Pred: {pred_parsed} (Raw len: {len(pred_raw)}) | True: {truth}")
                 errors += 1
                 
-                # 3. BACKWARD PASS (Teacher 7B)
-                # The teacher analyzes the mistake ("Calculates Gradient")
+                # 3. CRITIQUE (Teacher)
                 critique_prompt = [
                     {"role": "system", "content": "You are a logic teacher."},
                     {"role": "user", "content": f"Question: {q}\nStudent Answer: {pred_raw}\nTarget: {truth}\n\nAnalyze the student's error. Did they miss an item? Did they count non-objects? Be specific."}
                 ]
                 critique = teacher_client.call(api_kwargs={"messages": critique_prompt})
                 
-                # Store the gradient
-                grad = Gradient(
+                # 4. STORE GRADIENT (FIX IS HERE)
+                # We use ResearchGradient() instead of Gradient()
+                grad = ResearchGradient(
                     data=critique,
                     score=0.0,
                     from_response=MockTrace(q, "Input"),
-                    to_pred=MockTrace(truth, "Truth"),
-                    data_id=str(uuid.uuid4())
+                    to_pred=MockTrace(truth, "Truth")
                 )
-                student.system_prompt.add_gradient(grad)
+                
+                # We append directly to the list to avoid type checks
+                if not hasattr(student.system_prompt, "gradients"):
+                    student.system_prompt.gradients = []
+                student.system_prompt.gradients.append(grad)
 
-        # 4. OPTIMIZATION STEP
+        # 4. OPTIMIZE
         if errors > 0:
             print(f"\n📉 Found {errors} errors. Running Optimization Step...")
             optimizer.step()

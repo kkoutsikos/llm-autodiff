@@ -5,7 +5,9 @@ from adalflow.core.component import Component
 from adalflow.core.generator import Generator
 from adalflow.optim.parameter import Parameter
 from adalflow.core.types import GeneratorOutput 
+from adalflow.optim.parameter import ParameterType
 from adalflow.core import types
+
 class ObjectCountStudent(Component):
     def __init__(self, client):
         super().__init__()
@@ -18,7 +20,7 @@ class ObjectCountStudent(Component):
             data="Count the objects in the text below. Question: {{input_str}}",
             role_desc="Object Counting Instructions",
             requires_opt=True,
-            param_type=types.ParameterType.PROMPT
+            param_type=ParameterType.PROMPT
         )
 
     def call(self, input_str: str):
