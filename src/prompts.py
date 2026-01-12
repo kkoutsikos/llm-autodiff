@@ -120,3 +120,96 @@ Write a **new Reasoning Strategy** (Chain of Thought Plan).
 3. **No Domain Restriction:** Do not assume the input is about animals, food, or any specific topic.
 4. **Output Format:** Provide ONLY the new reasoning text.
 """
+
+
+EVALUATOR_SYSTEM_PROMPT = """You are a strict QA Evaluator for an AI system.
+Your job is to diagnose WHY a Student Model failed a task.
+You do not solve the problem yourself. You analyze the reasoning gap.
+
+Your Output Style:
+- **Concise:** 1-2 sentences max.
+- **Root Cause:** Focus on the mechanical failure (e.g., "Missed the second clause", "Counted types instead of tokens").
+- **No Fluff:** Do not say "The student did a good job but...". Go straight to the error.
+"""
+
+OPTIMIZER_SYSTEM_PROMPT = """You are an expert in LLM Prompt Engineering and Algorithm Design.
+Your goal is to optimize instructions for a smaller, less capable model (the Student).
+
+Your philosophy:
+1. **Algorithmic Clarity:** The Student needs clear, step-by-step algorithms, not vague advice.
+2. **Generalization:** You must write rules that apply to ALL data, not just the specific examples in the error log.
+3. **Iterative Refinement:** You are fixing specific bugs (like "counting plurals") without breaking the general logic.
+"""
+
+GDLO_TEMPLATE = """
+<START_OF_SYSTEM_PROMPT>
+{optimizer_system_prompt}
+<END_OF_SYSTEM_PROMPT>
+
+<START_OF_USER_MESSAGE>
+You are {steps} steps since your last improvement.
+Update the value more rapidly when steps are larger than 3.
+
+<START_OF_VARIABLE_AND_PEERS_INFO>
+{variable_and_peers_info}
+<END_OF_VARIABLE_AND_PEERS_INFO>
+
+{system_variables_section}
+
+{history_section}
+
+{failed_proposals_section}
+
+<START_OF_CONTEXT_FEEDBACK>
+Here are the context and feedback for the variable:
+{variable_grad}
+<END_OF_CONTEXT_FEEDBACK>
+
+<END_OF_USER_MESSAGE>
+"""
+
+def render_gdlo_prompt(param, gradients, steps, past_history, failed_proposals):
+    """
+    Manually renders the AdalFlow GDLO template.
+    """
+    # 1. Variable Info
+    # Check if param has attributes, otherwise default
+    name = getattr(param, 'name', 'System Prompt')
+    role = getattr(param, 'role_desc', 'Instruction')
+    data = getattr(param, 'data', str(param))
+    
+    var_info = (
+        f"Name: {name}\n"
+        f"Role: {role}\n"
+        f"Current Value:\n{data}"
+    )
+
+    # 2. Feedback (Gradients)
+    feedback_str = ""
+    for i, g in enumerate(gradients):
+        # Handle both AdalFlow objects and our custom TextualGradient objects
+        critique = getattr(g, 'data', str(g))
+        feedback_str += f"\n--- Feedback {i+1} ---\n{critique}\n"
+
+    # 3. History Section (OPRO)
+    hist_str = ""
+    if past_history:
+        # Format list items, truncating strictly to avoid context window overflow
+        items = "\n".join([f"{i+1}. {h[:300]}..." for i, h in enumerate(past_history)])
+        hist_str = f"<START_OF_HISTORY_PERFORMANCE>\nHere are best past iterations:\n{items}\n<END_OF_HISTORY_PERFORMANCE>"
+
+    # 4. Failed Proposals Section
+    failed_str = ""
+    if failed_proposals:
+        items = "\n".join([f"{i+1}. {f[:300]}..." for i, f in enumerate(failed_proposals)])
+        failed_str = f"<START_OF_CURRENT_ITERATION>\nAvoid these failed attempts (Scored lower):\n{items}\n<END_OF_CURRENT_ITERATION>"
+
+    # 5. Render
+    return GDLO_TEMPLATE.format(
+        optimizer_system_prompt="You are an expert in Optimization. Minimize the loss by refining the parameter.",
+        steps=steps,
+        variable_and_peers_info=var_info,
+        history_section=hist_str,
+        failed_proposals_section=failed_str,
+        variable_grad=feedback_str
+    )
