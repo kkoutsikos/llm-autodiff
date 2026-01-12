@@ -104,10 +104,10 @@ class ResearchOptimizer:
                 error_log += f"Ex {i+1}:\nQ: {q[:80]}...\nTarget: {truth}\nCritique: {critique}\n\n"
 
             # --- B. Select Template ---
-            if "Example" in param.role_desc:
-                template = OPTIMIZE_DEMOS_TEMPLATE
-                system_role = "You are a teacher."
-            elif "Reasoning" in param.role_desc:
+            #if "Example" in param.role_desc:
+                #template = OPTIMIZE_DEMOS_TEMPLATE
+                #system_role = "You are a teacher."
+            if "Reasoning" in param.role_desc:
                 template = OPTIMIZE_REASONING_TEMPLATE
                 system_role = "You are a Cognitive Scientist."
             else:
