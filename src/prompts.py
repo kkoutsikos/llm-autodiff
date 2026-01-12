@@ -79,3 +79,29 @@ ANALYSIS INSTRUCTIONS:
 
 GRADIENT (Feedback):
 """
+
+
+# =====================================================
+# META-PROMPT STRATEGY C: OPTIMIZING REASONING
+# =====================================================
+OPTIMIZE_REASONING_TEMPLATE = """
+You are a Cognitive Scientist optimizing the "Chain of Thought" for an AI.
+
+CURRENT STRATEGY:
+The model is currently told to think like this:
+"{current_prompt}"
+
+THE PROBLEM:
+The model is failing to reason correctly.
+Failures:
+{error_log}
+
+YOUR TASK:
+Write a NEW Reasoning Strategy.
+- If the model misses items, suggest "Scan the text word by word".
+- If the model counts wrong, suggest "Group items by category first".
+- Keep it distinct from the Task Instructions. Focus on the *process* of thinking.
+
+OUTPUT:
+Return ONLY the text of the new reasoning instructions.
+"""
