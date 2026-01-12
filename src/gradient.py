@@ -2,40 +2,35 @@ from src.prompts import GRADIENT_GENERATOR_TEMPLATE
 import uuid
 
 class ResearchGradient:
-    """
-    A container for the 'Textual Gradient'.
-    Stores the feedback (data) and the context (inputs/outputs).
-    """
+    """Stores the textual feedback (gradient) and context."""
     def __init__(self, data, from_response, to_pred, score=0.0):
-        self.data = data               # The text feedback (The "Gradient")
+        self.data = data               
         self.from_response = from_response 
         self.to_pred = to_pred         
         self.score = score
 
 class MockTrace:
-    """Helper to store data in a way that mimics AdalFlow traces."""
+    """Mimics AdalFlow trace object."""
     def __init__(self, data, name="mock"):
         self.id = str(uuid.uuid4())
         self.name = name
         self.data = data
+        self.component_trace = self
 
 class TextualBackwardEngine:
-    """
-    The Engine that runs the 'Backward Pass'.
-    It takes a failure and uses the Teacher Model to generate a Gradient.
-    """
+    """Converts a Failure -> Textual Gradient using the Teacher."""
     def __init__(self, teacher_client):
         self.teacher = teacher_client
 
     def compute_gradient(self, question, student_response, truth):
-        # 1. Prepare the Prompt using our Template
+        # 1. Prepare Prompt
         prompt_content = GRADIENT_GENERATOR_TEMPLATE.format(
             question=question,
             student_response=student_response,
             ground_truth=truth
         )
 
-        # 2. Run the Backward Pass (Call Teacher)
+        # 2. Call Teacher (Backward Pass)
         critique = self.teacher.call(api_kwargs={
             "messages": [
                 {"role": "system", "content": "You are an AI optimization assistant."},
@@ -43,7 +38,7 @@ class TextualBackwardEngine:
             ]
         })
 
-        # 3. Package into a Gradient Object
+        # 3. Return Gradient Object
         return ResearchGradient(
             data=critique.strip(),
             from_response=MockTrace(question, "Input"),

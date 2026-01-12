@@ -9,38 +9,29 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from src.client import LocalLLMClient
 from src.agentct import ObjectCountStudent
-from src.utils import load_bbh_object_count, parse_count_answer
+
 try:
     from adalflow.optim import Gradient
 except ImportError:
     # Fallback for different versions
     from adalflow.core.types import Gradient
+    
+
+from src.gradient import TextualBackwardEngine
+from src.prompts import OPTIMIZE_INSTRUCTIONS_TEMPLATE, OPTIMIZE_DEMOS_TEMPLATE, OPTIMIZE_REASONING_TEMPLATE
+from src.utils import load_bbh_object_count, parse_count_answer    
+    
+from src.utils import load_bbh_object_count, parse_count_answer
+
 # ==========================================
-# 1. CUSTOM DATA STRUCTURES
+# 1. HELPER: CSV LOGGER
 # ==========================================
-class ResearchGradient:
-    def __init__(self, data, from_response, to_pred, score=0.0):
-        self.data = data
-        self.from_response = from_response
-        self.to_pred = to_pred
-        self.score = score
-
-class MockTrace:
-    def __init__(self, data, name="mock"):
-        self.id = str(uuid.uuid4())
-        self.name = name
-        self.data = data
-        self.component_trace = self
-
-
 class CSVLogger:
-    """Simple logger to save training stats to a CSV file."""
     def __init__(self, filename="training_log.csv"):
         self.filename = filename
-        # Initialize file with headers
         with open(self.filename, mode='w', newline='') as f:
             writer = csv.writer(f)
-            writer.writerow(["Epoch", "Accuracy", "Errors", "Format_Failures", "Prompt_Length"])
+            writer.writerow(["Epoch", "Accuracy", "Errors", "Format_Failures", "Total_Prompt_Len"])
         print(f"📝 Logging metrics to {self.filename}")
 
     def log(self, epoch, acc, errors, format_fails, prompt_len):
@@ -48,10 +39,8 @@ class CSVLogger:
             writer = csv.writer(f)
             writer.writerow([epoch, acc, errors, format_fails, prompt_len])
 
-
-
 # ==========================================
-# 2. SMART RESEARCH OPTIMIZER (Handles Demos!)
+# 2. SEQUENTIAL RESEARCH OPTIMIZER
 # ==========================================
 class ResearchOptimizer:
     def __init__(self, params, teacher_client):
@@ -59,95 +48,105 @@ class ResearchOptimizer:
         self.client = teacher_client 
 
     def step(self):
-        for param in self.params:
-            grads = getattr(param, "gradients", [])
-            if not grads: continue
+        """
+        Executes a Sequential Optimization Step.
+        Order: Instructions -> Reasoning -> Examples
+        """
+        
+        # 1. Define Priority Order
+        priority_map = {
+            "Task Instructions": 0,
+            "Reasoning Strategy": 1,
+            "Few Shot Examples": 2
+        }
+        
+        # Filter params with gradients and sort them
+        active_params = [p for p in self.params if hasattr(p, "gradients") and p.gradients]
+        sorted_params = sorted(active_params, key=lambda p: priority_map.get(p.role_desc, 99))
+        
+        if not sorted_params: return
+
+        print(f"\n[OPTIMIZER] 🔄 Starting Sequential Update Cascade ({len(sorted_params)} steps)...")
+
+        # 2. Track Context Changes (To prevent drift)
+        context_updates = ""
+
+        for param in sorted_params:
+            grads = param.gradients
+            print(f"\n   👉 Step {priority_map.get(param.role_desc)}: Optimizing {param.role_desc}...")
             
-            print(f"\n[OPTIMIZER] 🧠 Analyzing {len(grads)} failures for: {param.role_desc}...")
-            
-            # 1. Build Error Log
+            # --- A. Build Error Log ---
             error_log = ""
             for i, grad in enumerate(grads):
                 q = grad.from_response.data 
                 truth = grad.to_pred.data
                 critique = grad.data
-                error_log += f"Ex {i+1}:\nQ: {q[:100]}...\nExpected: {truth}\nTeacher Note: {critique}\n\n"
+                error_log += f"Ex {i+1}:\nQ: {q[:80]}...\nTarget: {truth}\nCritique: {critique}\n\n"
 
-            # 2. Select Meta-Prompt based on Parameter Type
-            if "Example" in param.role_desc or "Demos" in param.role_desc:
-                # === STRATEGY A: OPTIMIZE EXAMPLES ===
-                print("[OPTIMIZER] 🔧 Tuning FEW-SHOT EXAMPLES...")
-                meta_prompt = [
-                    {"role": "system", "content": "You are a teacher creating exam prep materials."},
-                    {"role": "user", "content": f"""
-I have a student failing to count objects. 
-Current Examples provided to student:
-"{param.data}"
-
-The student is still making these mistakes:
-{error_log}
-
-Task: Write NEW, BETTER examples (Q&A pairs) that specifically address these mistakes.
-- If they miss negative constraints ("no flute"), include an example with "no X".
-- If they miss formatting, show the correct format "Answer: [[N]]".
-- Keep it concise.
-
-Output ONLY the new text for the examples.
-"""}
-                ]
+            # --- B. Select Template ---
+            if "Example" in param.role_desc:
+                template = OPTIMIZE_DEMOS_TEMPLATE
+                system_role = "You are a teacher."
+            elif "Reasoning" in param.role_desc:
+                template = OPTIMIZE_REASONING_TEMPLATE
+                system_role = "You are a Cognitive Scientist."
             else:
-                # === STRATEGY B: OPTIMIZE INSTRUCTIONS ===
-                print("[OPTIMIZER] 🔧 Tuning SYSTEM INSTRUCTIONS...")
-                meta_prompt = [
-                    {"role": "system", "content": "You are an expert Prompt Engineer."},
-                    {"role": "user", "content": f"""
-My agent is failing to count objects.
-Current Instructions: "{param.data}"
+                template = OPTIMIZE_INSTRUCTIONS_TEMPLATE
+                system_role = "You are an expert Prompt Engineer."
 
-Failures:
-{error_log}
+            # --- C. Format Prompt ---
+            prompt_content = template.format(
+                current_prompt=param.data,
+                error_log=error_log
+            )
 
-Task: Write BETTER instructions to fix this. 
-- Be specific about listing items.
-- Enforce the format "Answer: [[number]]".
+            # --- D. INJECT CONTEXT ---
+            if context_updates:
+                prompt_content += (
+                    f"\n\n🚨 CONTEXT UPDATE 🚨\n"
+                    f"Other prompt parts have just changed:\n{context_updates}\n"
+                    f"Ensure your update aligns with this."
+                )
 
-Output ONLY the new instruction text.
-"""}
-                ]
-
-            # 3. Generate & Update
-            new_val = self.client.call(api_kwargs={"messages": meta_prompt})
+            # --- E. Call Teacher ---
+            new_val = self.client.call(api_kwargs={
+                "messages": [{"role": "system", "content": system_role},
+                             {"role": "user", "content": prompt_content}]
+            })
+            
             clean_val = new_val.strip().replace('"', '')
-            
-            print(f"\n[OPTIMIZER] 💡 New {param.role_desc}:/n{clean_val}\n")
-            
+            print(f"   💡 New {param.role_desc} Generated.")
+
+            # --- F. Update ---
             param.data = clean_val
-            param.gradients = []
+            param.gradients = [] 
+            context_updates += f"\n[{param.role_desc}]: {clean_val}\n"
 
 # ==========================================
 # 3. MAIN LOOP
 # ==========================================
 def train():
-    print("🚀 Starting Few-Shot BBH Experiment (CSV Logging)...")
-    
-    # Init Logger
+    print("🚀 Starting Sequential 3-Parameter Experiment...")
     logger = CSVLogger("training_results.csv")
 
-    print("\n[1/2] Loading TEACHER (Qwen 7B)...")
     teacher_client = LocalLLMClient("Qwen/Qwen2.5-7B-Instruct")
-    print("\n[2/2] Loading STUDENT (Qwen 1.5B)...")
     student_client = LocalLLMClient("Qwen/Qwen2.5-1.5B-Instruct")
 
     student = ObjectCountStudent(student_client)
     optimizer = ResearchOptimizer(student.parameters(), teacher_client)
+    backward_engine = TextualBackwardEngine(teacher_client)
     
     train_data = load_bbh_object_count(n=5)
     
     for epoch in range(1, 6):
         print(f"\n================ EPOCH {epoch} ================")
-        print(f"[INSTRUCTIONS] {student.system_prompt.data}")
+        print(f"[INSTRUCT]  {student.system_prompt.data[:100]}...")
+        print(f"[REASONING] {student.reasoning_strategy.data[:100]}...")
+        print(f"[DEMOS]     {student.few_shot_demos.data[:100]}...")
         
+        # Clear Gradients
         student.system_prompt.gradients = []
+        student.reasoning_strategy.gradients = []
         student.few_shot_demos.gradients = []
         
         errors = 0
@@ -157,33 +156,36 @@ def train():
         for item in train_data:
             q, truth = item['question'], item['truth']
             
+            # Forward
             response = student(q)
             pred_raw = response.data
             pred_parsed = parse_count_answer(pred_raw)
             
             if pred_parsed == truth:
-                print(f"✅ PASS | {pred_parsed} == {truth}")
+                print(f"✅ PASS")
                 correct += 1
             else:
                 print(f"❌ FAIL | Pred: {pred_parsed} | True: {truth}")
                 errors += 1
                 if "Answer: [[" not in pred_raw: format_fails += 1
                 
-                critique = teacher_client.call(api_kwargs={"messages": [
-                    {"role": "user", "content": f"Q: {q}\nStudent: {pred_raw}\nTarget: {truth}\nAnalyze error."}
-                ]})
+                # Backward
+                grad = backward_engine.compute_gradient(q, pred_raw, truth)
                 
-                grad = ResearchGradient(critique, MockTrace(q), MockTrace(truth))
+                # Distribute Gradient to ALL 3 parameters
                 if not hasattr(student.system_prompt, "gradients"): student.system_prompt.gradients = []
+                if not hasattr(student.reasoning_strategy, "gradients"): student.reasoning_strategy.gradients = []
                 if not hasattr(student.few_shot_demos, "gradients"): student.few_shot_demos.gradients = []
                 
                 student.system_prompt.gradients.append(grad)
+                student.reasoning_strategy.gradients.append(grad)
                 student.few_shot_demos.gradients.append(grad)
 
-        # LOGGING
+        # Log
         acc = correct / len(train_data)
-        logger.log(epoch, acc, errors, format_fails, len(student.system_prompt.data))
-        print(f"📊 Stats saved: Acc={acc:.2f}")
+        total_len = len(student.system_prompt.data) + len(student.reasoning_strategy.data) + len(student.few_shot_demos.data)
+        logger.log(epoch, acc, errors, format_fails, total_len)
+        print(f"📊 Epoch Stats: Acc={acc:.2f} | Errors={errors}")
 
         if errors > 0:
             optimizer.step()
