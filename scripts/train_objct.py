@@ -4,10 +4,11 @@ import uuid
 import random
 import time
 import csv
+import re
 # Path setup to find 'src'
 sys.path.append(os.getcwd())
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-
+from src.prompts import render_gdlo_prompt
 from src.client import LocalLLMClient
 from src.agentct import ObjectCountStudent
 
@@ -47,203 +48,146 @@ class CSVLogger:
 # 2. SEQUENTIAL RESEARCH OPTIMIZER
 # ==========================================
 class ResearchOptimizer:
-    def __init__(self, params, teacher_client, verbose = True):
+    def __init__(self, params, teacher_client):
         self.params = list(params)
         self.client = teacher_client 
-        self.verbose = verbose
-
+        
+        # Track history PER PARAMETER (using ID as key)
+        self.best_history = {id(p): [] for p in self.params}
+        self.failed_history = {id(p): [] for p in self.params}
+        self.steps = 0
 
     def step(self):
-        """
-        Executes a Sequential Optimization Step.
-        Order: Instructions -> Reasoning -> Examples
-        """
+        self.steps += 1
+        print(f"\n⚡ [GDLO] Step {self.steps}: Generating Proposal...")
         
-        # 1. Define Priority Order
-        priority_map = {
-            "Task Instructions": 0,
-            "Reasoning Strategy": 1
+        for param in self.params:
+            if not getattr(param, "gradients", None): 
+                continue
             
-        }
-
-        # DEBUG: Print what the optimizer sees
-        total_grads = sum(len(getattr(p, "gradients", [])) for p in self.params)
-        print(f"\n[OPTIMIZER DEBUG] Total parameters: {len(self.params)}")
-        print(f"[OPTIMIZER DEBUG] Total gradients found: {total_grads}")
-        
-        if total_grads == 0:
-            print("⚠️ WARNING: Optimizer called but no gradients found! Check your attachment logic.")
-            return
-
-        # Filter params with gradients and sort them
-        active_params = [
-            p for p in self.params 
-            if hasattr(p, "gradients") 
-            and p.gradients 
-            and p.role_desc in priority_map 
-        ]
-        sorted_params = sorted(active_params, key=lambda p: priority_map.get(p.role_desc, 99))
-        
-        if not sorted_params: return
-
-        print(f"\n[OPTIMIZER] 🔄 Starting Sequential Update Cascade ({len(sorted_params)} steps)...")
-
-        # 2. Track Context Changes (To prevent drift)
-        context_updates = ""
-
-        for param in sorted_params:
-            grads = param.gradients
-            print(f"\n   👉 Step {priority_map.get(param.role_desc)}: Optimizing {param.role_desc}...")
+            p_id = id(param)
             
-            # --- A. Build Error Log ---
-            error_log = ""
-            for i, grad in enumerate(grads):
-                q = grad.from_response.data 
-                truth = grad.to_pred.data
-                critique = grad.data
-                error_log += f"Ex {i+1}:\nQ: {q[:80]}...\nTarget: {truth}\nCritique: {critique}\n\n"
-
-            # --- B. Select Template ---
-            #if "Example" in param.role_desc:
-                #template = OPTIMIZE_DEMOS_TEMPLATE
-                #system_role = "You are a teacher."
-            if "Reasoning" in param.role_desc:
-                template = OPTIMIZE_REASONING_TEMPLATE
-                system_role = "You are a Cognitive Scientist."
-            else:
-                template = OPTIMIZE_INSTRUCTIONS_TEMPLATE
-                system_role = "You are an expert Prompt Engineer."
-
-            # --- C. Format Prompt ---
-            prompt_content = template.format(
-                current_prompt=param.data,
-                error_log=error_log
+            # 1. Render Prompt
+            prompt_content = render_gdlo_prompt(
+                param,
+                param.gradients,
+                steps=self.steps,
+                past_history=self.best_history[p_id][-3:],     # Last 3 Best
+                failed_proposals=self.failed_history[p_id][-3:] # Last 3 Failed
             )
 
-            if context_updates:
-                prompt_content += (
-                    f"\n\n🚨 CONTEXT UPDATE 🚨\n"
-                    f"The other prompt parts have just changed:\n{context_updates}\n"
-                    f"Use this context to align your update, but DO NOT copy this header."
-                )
-
-            if self.verbose:
-                print(f"   [DEBUG] Sending meta-prompt to Teacher ({system_role})...")
-
-            # C. Call Teacher
+            # 2. Call Teacher
+            # Note: GDLO includes the system prompt inside the user message structure
             new_val = self.client.call(api_kwargs={
-                "messages": [{"role": "system", "content": system_role},
-                             {"role": "user", "content": prompt_content}]
+                "messages": [{"role": "user", "content": prompt_content}]
             })
             
-            
+            # 3. Clean & Update
             clean_val = new_val.strip().replace('"', '')
+            if "<START>" in clean_val: clean_val = clean_val.split("<START>")[-1] # Basic cleaning
             
+            # Store in history (Assuming success for now - in full AdalFlow we check score first)
+            self.best_history[p_id].append(clean_val)
             
-            if "🚨 CONTEXT UPDATE 🚨" in clean_val:
-                # Take everything AFTER the header
-                clean_val = clean_val.split("🚨 CONTEXT UPDATE 🚨")[-1].strip()
+            print(f"   ✅ [GDLO] Updated {getattr(param, 'role_desc', 'Parameter')} (History Depth: {len(self.best_history[p_id])})")
             
-            # Fix 2: Remove Markdown headers often generated by 7B models
-            clean_val = clean_val.replace("**Reasoning Strategy:**", "").strip()
-            clean_val = clean_val.replace("Reasoning Strategy:", "").strip()
-            
-            print(f"   💡 New {param.role_desc}:\n   --------------------------------------------------\n{clean_val}\n   --------------------------------------------------")
-
-            # E. Update
+            # Apply Update
             param.data = clean_val
-            param.gradients = [] 
-            context_updates += f"\n[{param.role_desc}]: {clean_val}\n"
+            param.gradients = []
 
 # ==========================================
 # 3. MAIN LOOP
 # ==========================================
+def parse_count_answer(text):
+    if not text: return None
+    match = re.search(r"Answer:\s*\[\[(\d+)\]\]", text, re.IGNORECASE)
+    if match: return int(match.group(1))
+    numbers = re.findall(r"\d+", text)
+    if numbers: return int(numbers[-1])
+    return None
+
 def train():
-
-
-
-    
-    BATCH_SIZE = 8       
-    DATASET_SIZE = 40    
+    # CONFIG
+    BATCH_SIZE = 4       
+    DATASET_SIZE = 20    
     EPOCHS = 4
-
-    print(f"🚀 Starting Mini-Batch Training (N={DATASET_SIZE}, Batch={BATCH_SIZE})...")
-    logger = CSVLogger("training_results.csv")
-
+    
+    print(f"🚀 Starting GDLO Training (N={DATASET_SIZE})...")
+    
+    # Clients
     teacher_client = LocalLLMClient("Qwen/Qwen2.5-7B-Instruct")
     student_client = LocalLLMClient("Qwen/Qwen2.5-1.5B-Instruct")
-
     
-    
+    # Student (Single System Prompt)
     student = ObjectCountStudent(student_client, model_kwargs={})
-    trainable_params = [
-        student.system_prompt, 
-        student.reasoning_strategy
-        
-    ]
-    optimizer = ResearchOptimizer(trainable_params, teacher_client, verbose=True)
+    
+    # Engine
+    optimizer = ResearchOptimizer([student.system_prompt], teacher_client)
     backward_engine = TextualBackwardEngine(teacher_client)
     
-    print("📚 Loading Data...")
+    # Data
     train_data = load_bbh_object_count(n=DATASET_SIZE)
     
+    # Logging
+    with open("training_results_gdlo.csv", "w", newline='') as f:
+        csv.writer(f).writerow(["Epoch", "Accuracy", "Errors", "Prompt_Len"])
+
     for epoch in range(1, EPOCHS + 1):
         print(f"\n\n================ EPOCH {epoch} ================")
         random.shuffle(train_data)
         
         epoch_correct = 0
-        epoch_errors = 0
-        
         batch_errors = 0
-        current_batch_count = 0
+        current_batch = 0
         
         for i, item in enumerate(train_data):
-            q, truth = item['question'], item['truth']
-            
+            q, truth_raw = item['question'], item['truth']
+            try:
+                truth = int(str(truth_raw).strip())
+            except:
+                truth = -999
+
+            # Forward
             response = student(q)
-            pred_raw = response.data
-            pred_parsed = parse_count_answer(pred_raw)
+            pred = parse_count_answer(response.data)
             
-            if pred_parsed == truth:
-                print(f"  ✅ Pass: {pred_parsed} == {truth}")
+            # Check
+            if pred == truth:
+                print(f"  ✅ Pass: {pred} == {truth}")
                 epoch_correct += 1
             else:
-                epoch_errors += 1
+                print(f"  ❌ Fail: {pred} vs {truth}")
                 batch_errors += 1
-                print(f"  ❌ Fail: {pred_parsed} vs {truth}")
                 
-                grad = backward_engine.compute_gradient(q, pred_raw, truth)
-                
-                # Safe Gradient Attachment
-                for param in [student.system_prompt, student.reasoning_strategy]:
-                    if not hasattr(param, "gradients") or not isinstance(param.gradients, list):
-                        param.gradients = []
-                    param.gradients.append(grad)
+                # Backward
+                grad = backward_engine.compute_gradient(q, response.data, truth)
+                if not hasattr(student.system_prompt, "gradients"):
+                    student.system_prompt.gradients = []
+                student.system_prompt.gradients.append(grad)
 
-            current_batch_count += 1
+            current_batch += 1
             
-            # Mini-Batch Update Trigger
-            if current_batch_count >= BATCH_SIZE or (i == len(train_data) - 1):
+            # GDLO Update Step
+            if current_batch >= BATCH_SIZE:
                 if batch_errors > 0:
                     optimizer.step()
                 else:
-                    print(f"  ✨ Batch Perfect! No updates needed.")
+                    print("  ✨ Batch Perfect!")
                 
-                current_batch_count = 0
+                current_batch = 0
                 batch_errors = 0
                 student.system_prompt.gradients = []
-                student.reasoning_strategy.gradients = []
 
-        # --- LOGGING STEP ---
-        epoch_acc = epoch_correct / DATASET_SIZE
-        prompt_len = len(student.system_prompt.data) + len(student.reasoning_strategy.data)
-        logger.log(epoch, epoch_acc, epoch_errors, prompt_len)
-        print(f"📊 Epoch Stats: Acc={epoch_acc:.2%} | Errors={epoch_errors}")
+        # Log Stats
+        acc = epoch_correct / DATASET_SIZE
+        print(f"📊 Epoch Stats: Acc={acc:.2%}")
+        with open("training_results_gdlo.csv", "a", newline='') as f:
+            csv.writer(f).writerow([epoch, acc, DATASET_SIZE-epoch_correct, len(student.system_prompt.data)])
 
-    print("\n💾 Saving Optimized Prompts...")
+    print("\n💾 Saving Optimized Artifacts...")
     os.makedirs("outputs", exist_ok=True)
-    with open("outputs/optimized_instructions.txt", "w") as f: f.write(student.system_prompt.data)
-    with open("outputs/optimized_reasoning.txt", "w") as f: f.write(student.reasoning_strategy.data)
+    with open("outputs/optimized_instructions.txt", "w") as f: 
+        f.write(student.system_prompt.data)
     print("✅ Done.")
 
 if __name__ == "__main__":

@@ -23,17 +23,29 @@ def parse_answer(text):
 def evaluate(name, student, dataset):
     print(f"\n🔍 Evaluating: {name}...")
     correct = 0
-    for item in dataset:
-        q, truth = item['question'], item['truth']
+    for i, item in enumerate(dataset):
+        q, truth_raw = item['question'], item['truth']
+        
+        # --- 1. SAFE CAST TRUTH TO INT ---
+        try:
+            truth = int(str(truth_raw).strip())
+        except ValueError:
+            # If truth is "5 apples", try to extract 5
+            numbers = re.findall(r"\d+", str(truth_raw))
+            truth = int(numbers[0]) if numbers else -999
+
         response = student(q)
         pred = parse_answer(response.data)
         
-        # Log failures for debugging
-        if pred != truth:
-            print(f"   [Miss] {name} | Pred: {pred} | Truth: {truth}")
+        # --- 2. COMPARE ---
+        is_correct = (pred == truth)
         
-        if pred == truth:
+        if is_correct:
             correct += 1
+            # Optional: Print passes to confirm it's working
+            # print(f"   ✅ {name} | Pred: {pred} | Truth: {truth}")
+        else:
+            print(f"   ❌ {name} | Pred: {pred} | Truth: {truth}")
             
     acc = correct / len(dataset)
     print(f"📈 {name} Accuracy: {acc:.2%}")

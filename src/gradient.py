@@ -17,30 +17,35 @@ class MockTrace:
         self.data = data
         self.component_trace = self
 
+class TextualGradient:
+    def __init__(self, data, context_str):
+        self.data = data # The critique string
+        self.context = context_str # The full conversation trace
+
 class TextualBackwardEngine:
-    """Converts a Failure -> Textual Gradient using the Teacher."""
     def __init__(self, teacher_client):
-        self.teacher = teacher_client
+        self.client = teacher_client
 
-    def compute_gradient(self, question, student_response, truth):
-        # 1. Prepare Prompt
-        prompt_content = GRADIENT_GENERATOR_TEMPLATE.format(
-            question=question,
-            student_response=student_response,
-            ground_truth=truth
-        )
-
-        # 2. Call Teacher (Backward Pass)
-        critique = self.teacher.call(api_kwargs={
-            "messages": [
-                {"role": "system", "content": "You are an AI optimization assistant."},
-                {"role": "user", "content": prompt_content}
-            ]
+    def compute_gradient(self, question, prompt_used, response, truth):
+        # 1. Construct the Gradient Generation Prompt (The Judge)
+        judge_prompt = f"""
+        Analyze this interaction:
+        
+        [SYSTEM PROMPT]: {prompt_used}
+        [USER INPUT]: {question}
+        [MODEL OUTPUT]: {response}
+        [GROUND TRUTH]: {truth}
+        
+        Critique the System Prompt. Did it mislead the model? 
+        What specific instruction is missing or wrong?
+        """
+        
+        # 2. Get Critique
+        critique = self.client.call(api_kwargs={
+            "messages": [{"role": "user", "content": judge_prompt}]
         })
-
-        # 3. Return Gradient Object
-        return ResearchGradient(
-            data=critique.strip(),
-            from_response=MockTrace(question, "Input"),
-            to_pred=MockTrace(truth, "Truth")
-        )
+        
+        # 3. Return Rich Context Object
+        # This mimics AdalFlow's GradientContext
+        context_trace = f"Input: {question}\nOutput: {response}\nTruth: {truth}"
+        return TextualGradient(data=critique, context_str=context_trace)
