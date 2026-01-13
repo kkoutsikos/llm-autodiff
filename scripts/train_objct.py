@@ -160,7 +160,7 @@ def train():
                 batch_errors += 1
                 
                 # Backward
-                grad = backward_engine.compute_gradient(q, response.data, truth)
+                grad = backward_engine.compute_gradient(q, student.system_prompt.data, response.data, truth)
                 if not hasattr(student.system_prompt, "gradients"):
                     student.system_prompt.gradients = []
                 student.system_prompt.gradients.append(grad)
