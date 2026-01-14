@@ -48,7 +48,7 @@ llm-autodiff/
 │   └── prompts.py       # System prompts for the Optimizer/Teacher
 ├── scripts/
 │   ├── train_adalflow.py   # Main training loop (Generic)
-│   └── train_object_count.py # Specific experiment for Object Counting
+│   └── train_objt.py # Specific experiment for Object Counting
 ├── README.md
 └── requirements.txt
 
