@@ -1,0 +1,1169 @@
+{
+    "steps": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+    ],
+    "val_scores": [
+        0.43,
+        0.66,
+        0.68,
+        0.68,
+        0.91,
+        0.93
+    ],
+    "test_scores": [
+        0.41,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "step_results": [
+        {
+            "step": 0,
+            "val_score": 0.43,
+            "test_score": 0.41,
+            "attempted_val_score": null,
+            "prompt": [
+                {
+                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                    "name": "system_prompt",
+                    "data": "You will answer a reasoning question. Think step by step. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.",
+                    "requires_opt": true
+                }
+            ]
+        },
+        {
+            "step": 1,
+            "val_score": 0.66,
+            "test_score": null,
+            "attempted_val_score": null,
+            "prompt": [
+                {
+                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                    "name": "system_prompt",
+                    "data": "You will answer a reasoning question. Think step by step. Your response should be a single numerical value. Do not include any additional text or explanations. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 books, 3 pens, and 3 pencils.'}\n   Expected Output: Answer: 5\n\n2. Input: {'input_str': 'I have 4 books, 5 pens, and 10 pencils.'}\n   Expected Output: Answer: 40\n\n3. Input: {'input_str': 'I see 9 violins and 1 flutes.'}\n   Expected Output: Answer: 10",
+                    "requires_opt": true
+                }
+            ]
+        },
+        {
+            "step": 2,
+            "val_score": 0.68,
+            "test_score": null,
+            "attempted_val_score": null,
+            "prompt": [
+                {
+                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                    "name": "system_prompt",
+                    "data": "You will answer a reasoning question. Think step by step. Sum all the numerical values mentioned in the input string. Your response should be a single numerical value. Do not include any additional text or explanations. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Expected Output: Answer: 13\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Expected Output: Answer: 19\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Expected Output: Answer: 19",
+                    "requires_opt": true
+                }
+            ]
+        },
+        {
+            "step": 3,
+            "val_score": 0.68,
+            "test_score": null,
+            "attempted_val_score": 0.67,
+            "prompt": [
+                {
+                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                    "name": "system_prompt",
+                    "data": "You will answer a reasoning question. Think step by step. Sum all the numerical values mentioned in the input string. Your response should be a single numerical value. Do not include any additional text or explanations. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Expected Output: Answer: 13\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Expected Output: Answer: 19\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Expected Output: Answer: 19",
+                    "requires_opt": true
+                }
+            ]
+        },
+        {
+            "step": 4,
+            "val_score": 0.91,
+            "test_score": null,
+            "attempted_val_score": null,
+            "prompt": [
+                {
+                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                    "name": "system_prompt",
+                    "data": "You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string and sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19",
+                    "requires_opt": true
+                }
+            ]
+        },
+        {
+            "step": 5,
+            "val_score": 0.93,
+            "test_score": null,
+            "attempted_val_score": null,
+            "prompt": [
+                {
+                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                    "name": "system_prompt",
+                    "data": "You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string. For each identified numerical value, ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. Sum up all the identified numerical values. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nSteps:\n1. Read the input string carefully.\n2. Identify and extract all the numerical values.\n3. Sum up all the extracted numerical values.\n4. Write the final answer in the specified format.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19",
+                    "requires_opt": true
+                }
+            ]
+        }
+    ],
+    "effective_measure": {
+        "subset": {
+            "pass": 10,
+            "fail": 6
+        },
+        "fullset": {
+            "pass": 0,
+            "fail": 0
+        },
+        "valset": {
+            "pass": 4,
+            "fail": 6
+        },
+        "demo_valset": {
+            "pass": 0,
+            "fail": 0
+        }
+    },
+    "validate_stats": null,
+    "time_stamp": "2026-01-14 23:05:17",
+    "total_time": 4930.893599510193,
+    "test_score": 0.92,
+    "trainer_state": {
+        "strategy": "constrained",
+        "demo_optimizers": [],
+        "text_optimizers": [
+            {
+                "name": "system_prompt",
+                "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                "role_desc": "Task Instructions",
+                "data": "You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string. For each identified numerical value, ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. Sum up all the identified numerical values. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nSteps:\n1. Read the input string carefully.\n2. Identify and extract all the numerical values.\n3. Sum up all the extracted numerical values.\n4. Write the final answer in the specified format.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19",
+                "requires_opt": true,
+                "param_type": "prompt (Instruction to the language model on task, data, and format.)",
+                "predecessors": [],
+                "gradients": [
+                    {
+                        "data_id": "ee487534-7a62-4293-9e9d-087e0adea976",
+                        "from_response_component_id": "f057f9e0-60db-4a5a-bdda-14c50387ec06",
+                        "order": 0,
+                        "from_response_id": "bddecbfb-7729-4127-b555-a28a212c4503",
+                        "to_pred_id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                        "score": 1.0,
+                        "context": {
+                            "variable_desc": "Task Instructions",
+                            "input_output": "\nLM_INPUT: {'input_str': 'I see 7 violins and 2 flutes.'}\nLM_OUTPUT:  Answer: 9\n",
+                            "response_desc": "Output from (llm) Generator"
+                        },
+                        "data": "Eval score: 1.0. No noticeable error.",
+                        "prompt": "<START_OF_SYSTEM_PROMPT>\nYou MUST determining the root cause of a system error.\nYou start with an evaluation function that measures performance, and you receive the system input.\nThe system can be a a compound system, potentially consisting of multiple components.\nYou work on one component.\nYou will receive feedback from your direct successor component, and your goal is to investigate your component\u2019s inputs and outputs to identify whether any of your input variables are causing the error.\n\nYour target input variable is enclosed in <TARGET_VARIABLE> (representing one of the input variables that may or may not be causing the error).\nAlternatively, it may be enclosed in <VARIABLES> tags (in which case you must pass feedback to all variables, indicating which ones cause the errors and which do not).\n\n1. From <CONVERSATION></CONVERSATION> section, you can find how the variable is obtained and used.\n2. As there might be multiple precedessors, and multi-components, it is possible that the feedback/error is not directly related to the variable itself.\n3. When you reason, really think about the variable's role in the component(infer from the CONVERSATION section) and the VARIABLE section before you provide feedback.\n4. Be specific, concise, critical, and direct.\n5. Maximum 3 sentences.\n\n[Cycle]: If the same DataID has multiple gradients, it means this component/variable is called multiple times in the compound system(with a cycle) in the same order as it appears in the gradient list.\n   Ensure the feedback is aware of all sets of inputs and outputs.\n\n\n<END_OF_SYSTEM_PROMPT>\n<START_OF_USER>\n<CONVERSATION>\n\n\n<START_OF_VARIABLE_DESC>\n<NAME> system_prompt </NAME>\n<TYPE> prompt (Instruction to the language model on task, data, and format.) </TYPE>\n<ROLE> Task Instructions </ROLE>\n<VARIABLE>You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string and sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19</VARIABLE>\n<END_OF_VARIABLE_DESC>\n\n\n<START_OF_PREDECESSORS>\nThe target variable is used together with these predecessors variables besides of the peers:\n1.\nName: system_prompt\nType: prompt (Instruction to the language model on task, data, and format.)\nDescription: Task Instructions\nWILL_BE_OPTIMIZED: True\nValue: You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string and sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19\n2.\nName: Generator_input_str\nType: input (The input to the component.)\nDescription: \nWILL_BE_OPTIMIZED: False\nValue: I see 7 violins and 2 flutes.\n<END_OF_PREDECESSORS>\n\nHere is the inputs and output with this component(LM):\n\nLM_INPUT: {'input_str': 'I see 7 violins and 2 flutes.'}\nLM_OUTPUT:  Answer: 9\n\n\n</CONVERSATION>\n<OBJECTIVE_INSTRUCTION>\n\nThis component is part of a larger system. The <LM_OUTPUT> was later used as Output from (llm) Generator.\n<OBJECTIVE_FUNCTION>\nYour goal is to give feedback to the variable to guide the LLM_OUTPUT according to feedback: 0. expected answer: None,\n Feedback: The score is 1.0, indicating that the output from the Generator, \"Answer: 9\", exactly matches the ground truth value of 9. There is no discrepancy between the expected correct response and the actual response. Therefore, there is no need for feedback on this variable.\n\n</OBJECTIVE_FUNCTION>\n</OBJECTIVE_INSTRUCTION>\n<END_OF_USER>\n",
+                        "is_default_copy": false
+                    },
+                    {
+                        "data_id": "eeced654-9e34-4474-a169-e260b4e3015a",
+                        "from_response_component_id": "f057f9e0-60db-4a5a-bdda-14c50387ec06",
+                        "order": 1,
+                        "from_response_id": "1f26d702-2161-4cd1-8aa4-8874d5fe007d",
+                        "to_pred_id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                        "score": 1.0,
+                        "context": {
+                            "variable_desc": "Task Instructions",
+                            "input_output": "\nLM_INPUT: {'input_str': 'I see 8 violins and 3 flutes.'}\nLM_OUTPUT:  The numerical values identified are 8 for violins and 3 for flutes. Summing these gives:\n\n\\[ 8 + 3 = 11 \\]\n\nTherefore, the total number of musical instruments is 11.\n\nAnswer: 11\n",
+                            "response_desc": "Output from (llm) Generator"
+                        },
+                        "data": "Eval score: 1.0. No noticeable error.",
+                        "prompt": "<START_OF_SYSTEM_PROMPT>\nYou MUST determining the root cause of a system error.\nYou start with an evaluation function that measures performance, and you receive the system input.\nThe system can be a a compound system, potentially consisting of multiple components.\nYou work on one component.\nYou will receive feedback from your direct successor component, and your goal is to investigate your component\u2019s inputs and outputs to identify whether any of your input variables are causing the error.\n\nYour target input variable is enclosed in <TARGET_VARIABLE> (representing one of the input variables that may or may not be causing the error).\nAlternatively, it may be enclosed in <VARIABLES> tags (in which case you must pass feedback to all variables, indicating which ones cause the errors and which do not).\n\n1. From <CONVERSATION></CONVERSATION> section, you can find how the variable is obtained and used.\n2. As there might be multiple precedessors, and multi-components, it is possible that the feedback/error is not directly related to the variable itself.\n3. When you reason, really think about the variable's role in the component(infer from the CONVERSATION section) and the VARIABLE section before you provide feedback.\n4. Be specific, concise, critical, and direct.\n5. Maximum 3 sentences.\n\n[Cycle]: If the same DataID has multiple gradients, it means this component/variable is called multiple times in the compound system(with a cycle) in the same order as it appears in the gradient list.\n   Ensure the feedback is aware of all sets of inputs and outputs.\n\n\n<END_OF_SYSTEM_PROMPT>\n<START_OF_USER>\n<CONVERSATION>\n\n\n<START_OF_VARIABLE_DESC>\n<NAME> system_prompt </NAME>\n<TYPE> prompt (Instruction to the language model on task, data, and format.) </TYPE>\n<ROLE> Task Instructions </ROLE>\n<VARIABLE>You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string and sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19</VARIABLE>\n<END_OF_VARIABLE_DESC>\n\n\n<START_OF_PREDECESSORS>\nThe target variable is used together with these predecessors variables besides of the peers:\n1.\nName: system_prompt\nType: prompt (Instruction to the language model on task, data, and format.)\nDescription: Task Instructions\nWILL_BE_OPTIMIZED: True\nValue: You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string and sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19\n2.\nName: Generator_input_str\nType: input (The input to the component.)\nDescription: \nWILL_BE_OPTIMIZED: False\nValue: I see 8 violins and 3 flutes.\n<END_OF_PREDECESSORS>\n\nHere is the inputs and output with this component(LM):\n\nLM_INPUT: {'input_str': 'I see 8 violins and 3 flutes.'}\nLM_OUTPUT:  The numerical values identified are 8 for violins and 3 for flutes. Summing these gives:\n\n\\[ 8 + 3 = 11 \\]\n\nTherefore, the total number of musical instruments is 11.\n\nAnswer: 11\n\n\n</CONVERSATION>\n<OBJECTIVE_INSTRUCTION>\n\nThis component is part of a larger system. The <LM_OUTPUT> was later used as Output from (llm) Generator.\n<OBJECTIVE_FUNCTION>\nYour goal is to give feedback to the variable to guide the LLM_OUTPUT according to feedback: 0. expected answer: None,\n Feedback: The score is 1.0, indicating that the output from the Generator (Generator_outputy_pred_0) correctly matches the ground truth value. Therefore, there is no need for feedback on this specific variable. However, if the score was low, I would provide detailed reasoning on the discrepancy between the expected correct response and the actual response.\n\n</OBJECTIVE_FUNCTION>\n</OBJECTIVE_INSTRUCTION>\n<END_OF_USER>\n",
+                        "is_default_copy": false
+                    }
+                ],
+                "previous_data": null,
+                "grad_fn": "None",
+                "score": 1.0,
+                "traces": {},
+                "demos": []
+            }
+        ],
+        "max_steps": 5,
+        "num_workers": 1,
+        "raw_shots": null,
+        "bootstrap_shots": null,
+        "weighted_sampling": false,
+        "exclude_input_fields_from_bootstrap_demos": false,
+        "batch_size": null,
+        "train_size": null,
+        "val_size": null,
+        "test_size": null,
+        "task_class": "ObjectCountAdalComponent",
+        "hash_key": "f415e",
+        "task_state_dict": {
+            "type": "ObjectCountAdalComponent",
+            "data": {
+                "_components": {
+                    "_ordered_dict": true,
+                    "data": [
+                        [
+                            "task",
+                            {
+                                "type": "ObjectCountTaskPipeline",
+                                "data": {
+                                    "_components": {
+                                        "_ordered_dict": true,
+                                        "data": [
+                                            [
+                                                "llm_counter",
+                                                {
+                                                    "type": "Generator",
+                                                    "data": {
+                                                        "model_str": "SpyLLMClient_default",
+                                                        "cache_path": {
+                                                            "type": "PosixPath",
+                                                            "data": "/root/.adalflow/cache_SpyLLMClient_default.db"
+                                                        },
+                                                        "callbacks": {
+                                                            "on_success": [],
+                                                            "on_failure": [],
+                                                            "on_complete": []
+                                                        },
+                                                        "cache": {
+                                                            "type": "Cache",
+                                                            "data": "<diskcache.core.Cache object at 0x7b5594977c50>"
+                                                        },
+                                                        "_components": {
+                                                            "_ordered_dict": true,
+                                                            "data": [
+                                                                [
+                                                                    "model_client",
+                                                                    {
+                                                                        "type": "SpyLLMClient",
+                                                                        "data": {
+                                                                            "_components": {
+                                                                                "_ordered_dict": true,
+                                                                                "data": []
+                                                                            },
+                                                                            "_parameters": {
+                                                                                "_ordered_dict": true,
+                                                                                "data": []
+                                                                            },
+                                                                            "training": false,
+                                                                            "teacher_mode": false,
+                                                                            "tracing": false,
+                                                                            "name": "SpyLLMClient",
+                                                                            "_init_args": {
+                                                                                "model_name": null,
+                                                                                "role_name": "GENERIC"
+                                                                            },
+                                                                            "sync_client": null,
+                                                                            "async_client": null,
+                                                                            "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+                                                                            "tokenizer": {
+                                                                                "type": "Qwen2TokenizerFast",
+                                                                                "data": "Qwen2TokenizerFast(name_or_path='Qwen/Qwen2.5-1.5B-Instruct', vocab_size=151643, model_max_length=131072, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'eos_token': '<|im_end|>', 'pad_token': '<|endoftext|>', 'additional_special_tokens': ['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']}, clean_up_tokenization_spaces=False, added_tokens_decoder={\n\t151643: AddedToken(\"<|endoftext|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151644: AddedToken(\"<|im_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151645: AddedToken(\"<|im_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151646: AddedToken(\"<|object_ref_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151647: AddedToken(\"<|object_ref_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151648: AddedToken(\"<|box_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151649: AddedToken(\"<|box_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151650: AddedToken(\"<|quad_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151651: AddedToken(\"<|quad_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151652: AddedToken(\"<|vision_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151653: AddedToken(\"<|vision_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151654: AddedToken(\"<|vision_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151655: AddedToken(\"<|image_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151656: AddedToken(\"<|video_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151657: AddedToken(\"<tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151658: AddedToken(\"</tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151659: AddedToken(\"<|fim_prefix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151660: AddedToken(\"<|fim_middle|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151661: AddedToken(\"<|fim_suffix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151662: AddedToken(\"<|fim_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151663: AddedToken(\"<|repo_name|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151664: AddedToken(\"<|file_sep|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n}\n)"
+                                                                            },
+                                                                            "model": {
+                                                                                "type": "Qwen2ForCausalLM",
+                                                                                "data": "Qwen2ForCausalLM(\n  (model): Qwen2Model(\n    (embed_tokens): Embedding(151936, 1536)\n    (layers): ModuleList(\n      (0-27): 28 x Qwen2DecoderLayer(\n        (self_attn): Qwen2Attention(\n          (q_proj): Linear4bit(in_features=1536, out_features=1536, bias=True)\n          (k_proj): Linear4bit(in_features=1536, out_features=256, bias=True)\n          (v_proj): Linear4bit(in_features=1536, out_features=256, bias=True)\n          (o_proj): Linear4bit(in_features=1536, out_features=1536, bias=False)\n        )\n        (mlp): Qwen2MLP(\n          (gate_proj): Linear4bit(in_features=1536, out_features=8960, bias=False)\n          (up_proj): Linear4bit(in_features=1536, out_features=8960, bias=False)\n          (down_proj): Linear4bit(in_features=8960, out_features=1536, bias=False)\n          (act_fn): SiLUActivation()\n        )\n        (input_layernorm): Qwen2RMSNorm((1536,), eps=1e-06)\n        (post_attention_layernorm): Qwen2RMSNorm((1536,), eps=1e-06)\n      )\n    )\n    (norm): Qwen2RMSNorm((1536,), eps=1e-06)\n    (rotary_emb): Qwen2RotaryEmbedding()\n  )\n  (lm_head): Linear(in_features=1536, out_features=151936, bias=False)\n)"
+                                                                            },
+                                                                            "role_name": "STUDENT"
+                                                                        }
+                                                                    }
+                                                                ],
+                                                                [
+                                                                    "backward_engine",
+                                                                    {
+                                                                        "type": "BackwardEngine",
+                                                                        "data": {
+                                                                            "model_str": "SpyLLMClient_default",
+                                                                            "cache_path": {
+                                                                                "type": "PosixPath",
+                                                                                "data": "/root/.adalflow/cache_SpyLLMClient_default.db"
+                                                                            },
+                                                                            "callbacks": {
+                                                                                "on_success": [],
+                                                                                "on_failure": [],
+                                                                                "on_complete": []
+                                                                            },
+                                                                            "cache": {
+                                                                                "type": "Cache",
+                                                                                "data": "<diskcache.core.Cache object at 0x7b5590117590>"
+                                                                            },
+                                                                            "_components": {
+                                                                                "_ordered_dict": true,
+                                                                                "data": [
+                                                                                    [
+                                                                                        "model_client",
+                                                                                        {
+                                                                                            "type": "SpyLLMClient",
+                                                                                            "data": {
+                                                                                                "_components": {
+                                                                                                    "_ordered_dict": true,
+                                                                                                    "data": []
+                                                                                                },
+                                                                                                "_parameters": {
+                                                                                                    "_ordered_dict": true,
+                                                                                                    "data": []
+                                                                                                },
+                                                                                                "training": false,
+                                                                                                "teacher_mode": false,
+                                                                                                "tracing": false,
+                                                                                                "name": "SpyLLMClient",
+                                                                                                "_init_args": {
+                                                                                                    "model_name": null,
+                                                                                                    "role_name": "GENERIC"
+                                                                                                },
+                                                                                                "sync_client": null,
+                                                                                                "async_client": null,
+                                                                                                "model_name": "Qwen/Qwen2.5-7B-Instruct",
+                                                                                                "tokenizer": {
+                                                                                                    "type": "Qwen2TokenizerFast",
+                                                                                                    "data": "Qwen2TokenizerFast(name_or_path='Qwen/Qwen2.5-7B-Instruct', vocab_size=151643, model_max_length=131072, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'eos_token': '<|im_end|>', 'pad_token': '<|endoftext|>', 'additional_special_tokens': ['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']}, clean_up_tokenization_spaces=False, added_tokens_decoder={\n\t151643: AddedToken(\"<|endoftext|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151644: AddedToken(\"<|im_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151645: AddedToken(\"<|im_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151646: AddedToken(\"<|object_ref_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151647: AddedToken(\"<|object_ref_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151648: AddedToken(\"<|box_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151649: AddedToken(\"<|box_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151650: AddedToken(\"<|quad_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151651: AddedToken(\"<|quad_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151652: AddedToken(\"<|vision_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151653: AddedToken(\"<|vision_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151654: AddedToken(\"<|vision_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151655: AddedToken(\"<|image_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151656: AddedToken(\"<|video_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151657: AddedToken(\"<tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151658: AddedToken(\"</tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151659: AddedToken(\"<|fim_prefix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151660: AddedToken(\"<|fim_middle|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151661: AddedToken(\"<|fim_suffix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151662: AddedToken(\"<|fim_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151663: AddedToken(\"<|repo_name|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151664: AddedToken(\"<|file_sep|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n}\n)"
+                                                                                                },
+                                                                                                "model": {
+                                                                                                    "type": "Qwen2ForCausalLM",
+                                                                                                    "data": "Qwen2ForCausalLM(\n  (model): Qwen2Model(\n    (embed_tokens): Embedding(152064, 3584)\n    (layers): ModuleList(\n      (0-27): 28 x Qwen2DecoderLayer(\n        (self_attn): Qwen2Attention(\n          (q_proj): Linear4bit(in_features=3584, out_features=3584, bias=True)\n          (k_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (v_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (o_proj): Linear4bit(in_features=3584, out_features=3584, bias=False)\n        )\n        (mlp): Qwen2MLP(\n          (gate_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (up_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (down_proj): Linear4bit(in_features=18944, out_features=3584, bias=False)\n          (act_fn): SiLUActivation()\n        )\n        (input_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n        (post_attention_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n      )\n    )\n    (norm): Qwen2RMSNorm((3584,), eps=1e-06)\n    (rotary_emb): Qwen2RotaryEmbedding()\n  )\n  (lm_head): Linear(in_features=3584, out_features=152064, bias=False)\n)"
+                                                                                                },
+                                                                                                "role_name": "TEACHER (CRITIC)"
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                ]
+                                                                            },
+                                                                            "_parameters": {
+                                                                                "_ordered_dict": true,
+                                                                                "data": []
+                                                                            },
+                                                                            "training": false,
+                                                                            "teacher_mode": false,
+                                                                            "tracing": false,
+                                                                            "name": "BackwardEngine",
+                                                                            "_init_args": {
+                                                                                "kwargs": null
+                                                                            },
+                                                                            "id": "0b91dd75-5bd7-46cd-bafd-21e8252a648d",
+                                                                            "desc": "Generate a response using LLM model.",
+                                                                            "backward_engine": null,
+                                                                            "template": "<START_OF_SYSTEM_PROMPT>\nYou MUST determining the root cause of a system error.\nYou start with an evaluation function that measures performance, and you receive the system input.\nThe system can be a a compound system, potentially consisting of multiple components.\nYou work on one component.\nYou will receive feedback from your direct successor component, and your goal is to investigate your component\u2019s inputs and outputs to identify whether any of your input variables are causing the error.\n\nYour target input variable is enclosed in <TARGET_VARIABLE> (representing one of the input variables that may or may not be causing the error).\nAlternatively, it may be enclosed in <VARIABLES> tags (in which case you must pass feedback to all variables, indicating which ones cause the errors and which do not).\n\n1. From <CONVERSATION></CONVERSATION> section, you can find how the variable is obtained and used.\n2. As there might be multiple precedessors, and multi-components, it is possible that the feedback/error is not directly related to the variable itself.\n3. When you reason, really think about the variable's role in the component(infer from the CONVERSATION section) and the VARIABLE section before you provide feedback.\n4. Be specific, concise, critical, and direct.\n5. Maximum 3 sentences.\n\n[Cycle]: If the same DataID has multiple gradients, it means this component/variable is called multiple times in the compound system(with a cycle) in the same order as it appears in the gradient list.\n   Ensure the feedback is aware of all sets of inputs and outputs.\n\n{% if output_format_str %}\n{{output_format_str}}\n{% endif %}\n\n<END_OF_SYSTEM_PROMPT>\n<START_OF_USER>\n<CONVERSATION>\n{{conversation_sec}}\n</CONVERSATION>\n<OBJECTIVE_INSTRUCTION>\n{{objective_instruction_sec}}\n</OBJECTIVE_INSTRUCTION>\n<END_OF_USER>\n",
+                                                                            "prompt_kwargs": {},
+                                                                            "model_kwargs": {
+                                                                                "temperature": 0.7,
+                                                                                "max_tokens": 4096
+                                                                            },
+                                                                            "model_type": {
+                                                                                "type": "ModelType",
+                                                                                "data": "ModelType.LLM"
+                                                                            },
+                                                                            "output_processors": null,
+                                                                            "mock_output": false,
+                                                                            "mock_output_data": "mock data",
+                                                                            "_use_cache": true,
+                                                                            "_kwargs": {
+                                                                                "model_client": {
+                                                                                    "type": "SpyLLMClient",
+                                                                                    "data": {
+                                                                                        "_components": {
+                                                                                            "_ordered_dict": true,
+                                                                                            "data": []
+                                                                                        },
+                                                                                        "_parameters": {
+                                                                                            "_ordered_dict": true,
+                                                                                            "data": []
+                                                                                        },
+                                                                                        "training": false,
+                                                                                        "teacher_mode": false,
+                                                                                        "tracing": false,
+                                                                                        "name": "SpyLLMClient",
+                                                                                        "_init_args": {
+                                                                                            "model_name": null,
+                                                                                            "role_name": "GENERIC"
+                                                                                        },
+                                                                                        "sync_client": null,
+                                                                                        "async_client": null,
+                                                                                        "model_name": "Qwen/Qwen2.5-7B-Instruct",
+                                                                                        "tokenizer": {
+                                                                                            "type": "Qwen2TokenizerFast",
+                                                                                            "data": "Qwen2TokenizerFast(name_or_path='Qwen/Qwen2.5-7B-Instruct', vocab_size=151643, model_max_length=131072, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'eos_token': '<|im_end|>', 'pad_token': '<|endoftext|>', 'additional_special_tokens': ['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']}, clean_up_tokenization_spaces=False, added_tokens_decoder={\n\t151643: AddedToken(\"<|endoftext|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151644: AddedToken(\"<|im_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151645: AddedToken(\"<|im_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151646: AddedToken(\"<|object_ref_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151647: AddedToken(\"<|object_ref_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151648: AddedToken(\"<|box_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151649: AddedToken(\"<|box_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151650: AddedToken(\"<|quad_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151651: AddedToken(\"<|quad_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151652: AddedToken(\"<|vision_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151653: AddedToken(\"<|vision_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151654: AddedToken(\"<|vision_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151655: AddedToken(\"<|image_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151656: AddedToken(\"<|video_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151657: AddedToken(\"<tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151658: AddedToken(\"</tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151659: AddedToken(\"<|fim_prefix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151660: AddedToken(\"<|fim_middle|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151661: AddedToken(\"<|fim_suffix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151662: AddedToken(\"<|fim_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151663: AddedToken(\"<|repo_name|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151664: AddedToken(\"<|file_sep|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n}\n)"
+                                                                                        },
+                                                                                        "model": {
+                                                                                            "type": "Qwen2ForCausalLM",
+                                                                                            "data": "Qwen2ForCausalLM(\n  (model): Qwen2Model(\n    (embed_tokens): Embedding(152064, 3584)\n    (layers): ModuleList(\n      (0-27): 28 x Qwen2DecoderLayer(\n        (self_attn): Qwen2Attention(\n          (q_proj): Linear4bit(in_features=3584, out_features=3584, bias=True)\n          (k_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (v_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (o_proj): Linear4bit(in_features=3584, out_features=3584, bias=False)\n        )\n        (mlp): Qwen2MLP(\n          (gate_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (up_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (down_proj): Linear4bit(in_features=18944, out_features=3584, bias=False)\n          (act_fn): SiLUActivation()\n        )\n        (input_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n        (post_attention_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n      )\n    )\n    (norm): Qwen2RMSNorm((3584,), eps=1e-06)\n    (rotary_emb): Qwen2RotaryEmbedding()\n  )\n  (lm_head): Linear(in_features=3584, out_features=152064, bias=False)\n)"
+                                                                                        },
+                                                                                        "role_name": "TEACHER (CRITIC)"
+                                                                                    }
+                                                                                },
+                                                                                "model_kwargs": {
+                                                                                    "temperature": 0.7,
+                                                                                    "max_tokens": 4096
+                                                                                },
+                                                                                "template": "<START_OF_SYSTEM_PROMPT>\nYou MUST determining the root cause of a system error.\nYou start with an evaluation function that measures performance, and you receive the system input.\nThe system can be a a compound system, potentially consisting of multiple components.\nYou work on one component.\nYou will receive feedback from your direct successor component, and your goal is to investigate your component\u2019s inputs and outputs to identify whether any of your input variables are causing the error.\n\nYour target input variable is enclosed in <TARGET_VARIABLE> (representing one of the input variables that may or may not be causing the error).\nAlternatively, it may be enclosed in <VARIABLES> tags (in which case you must pass feedback to all variables, indicating which ones cause the errors and which do not).\n\n1. From <CONVERSATION></CONVERSATION> section, you can find how the variable is obtained and used.\n2. As there might be multiple precedessors, and multi-components, it is possible that the feedback/error is not directly related to the variable itself.\n3. When you reason, really think about the variable's role in the component(infer from the CONVERSATION section) and the VARIABLE section before you provide feedback.\n4. Be specific, concise, critical, and direct.\n5. Maximum 3 sentences.\n\n[Cycle]: If the same DataID has multiple gradients, it means this component/variable is called multiple times in the compound system(with a cycle) in the same order as it appears in the gradient list.\n   Ensure the feedback is aware of all sets of inputs and outputs.\n\n{% if output_format_str %}\n{{output_format_str}}\n{% endif %}\n\n<END_OF_SYSTEM_PROMPT>\n<START_OF_USER>\n<CONVERSATION>\n{{conversation_sec}}\n</CONVERSATION>\n<OBJECTIVE_INSTRUCTION>\n{{objective_instruction_sec}}\n</OBJECTIVE_INSTRUCTION>\n<END_OF_USER>\n",
+                                                                                "prompt_kwargs": {},
+                                                                                "output_processors": null,
+                                                                                "name": null,
+                                                                                "cache_path": null,
+                                                                                "use_cache": true
+                                                                            },
+                                                                            "_teacher": null,
+                                                                            "_trace_api_kwargs": {},
+                                                                            "_tokenizer": {
+                                                                                "type": "Tokenizer",
+                                                                                "data": "<adalflow.core.tokenizer.Tokenizer object at 0x7b55900ee7e0>"
+                                                                            },
+                                                                            "_estimated_token_count": 0
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            ]
+                                                        },
+                                                        "_parameters": {
+                                                            "_ordered_dict": true,
+                                                            "data": [
+                                                                [
+                                                                    "system_prompt",
+                                                                    {
+                                                                        "name": "system_prompt",
+                                                                        "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                                                                        "role_desc": "Task Instructions",
+                                                                        "data": "You will answer a reasoning question. Think step by step. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.",
+                                                                        "requires_opt": true,
+                                                                        "param_type": "prompt (Instruction to the language model on task, data, and format.)",
+                                                                        "predecessors": [],
+                                                                        "gradients": [],
+                                                                        "previous_data": null,
+                                                                        "grad_fn": "None",
+                                                                        "score": null,
+                                                                        "traces": {},
+                                                                        "demos": []
+                                                                    }
+                                                                ]
+                                                            ]
+                                                        },
+                                                        "training": false,
+                                                        "teacher_mode": false,
+                                                        "tracing": false,
+                                                        "name": "Generator",
+                                                        "_init_args": {
+                                                            "model_client": null,
+                                                            "model_kwargs": {},
+                                                            "model_type": {
+                                                                "type": "ModelType",
+                                                                "data": "ModelType.LLM"
+                                                            },
+                                                            "template": null,
+                                                            "prompt_kwargs": {},
+                                                            "output_processors": null,
+                                                            "name": null,
+                                                            "cache_path": null,
+                                                            "use_cache": true
+                                                        },
+                                                        "id": "f057f9e0-60db-4a5a-bdda-14c50387ec06",
+                                                        "desc": "Generate a response using LLM model.",
+                                                        "template": "<START_OF_SYSTEM_PROMPT>\n{{system_prompt}}\n<END_OF_SYSTEM_PROMPT>\n\n<START_OF_USER>\n{{input_str}}\n<END_OF_USER>\n",
+                                                        "prompt_kwargs": {
+                                                            "system_prompt": {
+                                                                "name": "system_prompt",
+                                                                "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                                                                "role_desc": "Task Instructions",
+                                                                "data": "You will answer a reasoning question. Think step by step. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.",
+                                                                "requires_opt": true,
+                                                                "param_type": "prompt (Instruction to the language model on task, data, and format.)",
+                                                                "predecessors": [],
+                                                                "gradients": [],
+                                                                "previous_data": null,
+                                                                "grad_fn": "None",
+                                                                "score": null,
+                                                                "traces": {},
+                                                                "demos": []
+                                                            }
+                                                        },
+                                                        "model_kwargs": {
+                                                            "temperature": 0.5
+                                                        },
+                                                        "model_type": {
+                                                            "type": "ModelType",
+                                                            "data": "ModelType.LLM"
+                                                        },
+                                                        "output_processors": null,
+                                                        "mock_output": false,
+                                                        "mock_output_data": "mock data",
+                                                        "_use_cache": true,
+                                                        "_kwargs": {
+                                                            "model_client": {
+                                                                "type": "SpyLLMClient",
+                                                                "data": {
+                                                                    "_components": {
+                                                                        "_ordered_dict": true,
+                                                                        "data": []
+                                                                    },
+                                                                    "_parameters": {
+                                                                        "_ordered_dict": true,
+                                                                        "data": []
+                                                                    },
+                                                                    "training": false,
+                                                                    "teacher_mode": false,
+                                                                    "tracing": false,
+                                                                    "name": "SpyLLMClient",
+                                                                    "_init_args": {
+                                                                        "model_name": null,
+                                                                        "role_name": "GENERIC"
+                                                                    },
+                                                                    "sync_client": null,
+                                                                    "async_client": null,
+                                                                    "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+                                                                    "tokenizer": {
+                                                                        "type": "Qwen2TokenizerFast",
+                                                                        "data": "Qwen2TokenizerFast(name_or_path='Qwen/Qwen2.5-1.5B-Instruct', vocab_size=151643, model_max_length=131072, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'eos_token': '<|im_end|>', 'pad_token': '<|endoftext|>', 'additional_special_tokens': ['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']}, clean_up_tokenization_spaces=False, added_tokens_decoder={\n\t151643: AddedToken(\"<|endoftext|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151644: AddedToken(\"<|im_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151645: AddedToken(\"<|im_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151646: AddedToken(\"<|object_ref_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151647: AddedToken(\"<|object_ref_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151648: AddedToken(\"<|box_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151649: AddedToken(\"<|box_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151650: AddedToken(\"<|quad_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151651: AddedToken(\"<|quad_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151652: AddedToken(\"<|vision_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151653: AddedToken(\"<|vision_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151654: AddedToken(\"<|vision_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151655: AddedToken(\"<|image_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151656: AddedToken(\"<|video_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151657: AddedToken(\"<tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151658: AddedToken(\"</tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151659: AddedToken(\"<|fim_prefix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151660: AddedToken(\"<|fim_middle|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151661: AddedToken(\"<|fim_suffix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151662: AddedToken(\"<|fim_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151663: AddedToken(\"<|repo_name|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151664: AddedToken(\"<|file_sep|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n}\n)"
+                                                                    },
+                                                                    "model": {
+                                                                        "type": "Qwen2ForCausalLM",
+                                                                        "data": "Qwen2ForCausalLM(\n  (model): Qwen2Model(\n    (embed_tokens): Embedding(151936, 1536)\n    (layers): ModuleList(\n      (0-27): 28 x Qwen2DecoderLayer(\n        (self_attn): Qwen2Attention(\n          (q_proj): Linear4bit(in_features=1536, out_features=1536, bias=True)\n          (k_proj): Linear4bit(in_features=1536, out_features=256, bias=True)\n          (v_proj): Linear4bit(in_features=1536, out_features=256, bias=True)\n          (o_proj): Linear4bit(in_features=1536, out_features=1536, bias=False)\n        )\n        (mlp): Qwen2MLP(\n          (gate_proj): Linear4bit(in_features=1536, out_features=8960, bias=False)\n          (up_proj): Linear4bit(in_features=1536, out_features=8960, bias=False)\n          (down_proj): Linear4bit(in_features=8960, out_features=1536, bias=False)\n          (act_fn): SiLUActivation()\n        )\n        (input_layernorm): Qwen2RMSNorm((1536,), eps=1e-06)\n        (post_attention_layernorm): Qwen2RMSNorm((1536,), eps=1e-06)\n      )\n    )\n    (norm): Qwen2RMSNorm((1536,), eps=1e-06)\n    (rotary_emb): Qwen2RotaryEmbedding()\n  )\n  (lm_head): Linear(in_features=1536, out_features=151936, bias=False)\n)"
+                                                                    },
+                                                                    "role_name": "STUDENT"
+                                                                }
+                                                            },
+                                                            "model_kwargs": {
+                                                                "temperature": 0.5
+                                                            },
+                                                            "template": "<START_OF_SYSTEM_PROMPT>\n{{system_prompt}}\n<END_OF_SYSTEM_PROMPT>\n\n<START_OF_USER>\n{{input_str}}\n<END_OF_USER>\n",
+                                                            "prompt_kwargs": {
+                                                                "system_prompt": {
+                                                                    "name": "system_prompt",
+                                                                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                                                                    "role_desc": "Task Instructions",
+                                                                    "data": "You will answer a reasoning question. Think step by step. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.",
+                                                                    "requires_opt": true,
+                                                                    "param_type": "prompt (Instruction to the language model on task, data, and format.)",
+                                                                    "predecessors": [],
+                                                                    "gradients": [],
+                                                                    "previous_data": null,
+                                                                    "grad_fn": "None",
+                                                                    "score": null,
+                                                                    "traces": {},
+                                                                    "demos": []
+                                                                }
+                                                            },
+                                                            "output_processors": null,
+                                                            "name": null,
+                                                            "cache_path": null,
+                                                            "use_cache": true
+                                                        },
+                                                        "_teacher": null,
+                                                        "_trace_api_kwargs": {},
+                                                        "_tokenizer": {
+                                                            "type": "Tokenizer",
+                                                            "data": "<adalflow.core.tokenizer.Tokenizer object at 0x7b5594968c80>"
+                                                        },
+                                                        "_estimated_token_count": 0
+                                                    }
+                                                }
+                                            ]
+                                        ]
+                                    },
+                                    "_parameters": {
+                                        "_ordered_dict": true,
+                                        "data": [
+                                            [
+                                                "system_prompt",
+                                                {
+                                                    "name": "system_prompt",
+                                                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                                                    "role_desc": "Task Instructions",
+                                                    "data": "You will answer a reasoning question. Think step by step. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.",
+                                                    "requires_opt": true,
+                                                    "param_type": "prompt (Instruction to the language model on task, data, and format.)",
+                                                    "predecessors": [],
+                                                    "gradients": [],
+                                                    "previous_data": null,
+                                                    "grad_fn": "None",
+                                                    "score": null,
+                                                    "traces": {},
+                                                    "demos": []
+                                                }
+                                            ]
+                                        ]
+                                    },
+                                    "training": false,
+                                    "teacher_mode": false,
+                                    "tracing": false,
+                                    "name": "ObjectCountTaskPipeline",
+                                    "_init_args": {
+                                        "model_client": null,
+                                        "model_kwargs": null
+                                    }
+                                }
+                            }
+                        ],
+                        [
+                            "loss_fn",
+                            {
+                                "type": "EvalFnToTextLoss",
+                                "data": {
+                                    "_components": {
+                                        "_ordered_dict": true,
+                                        "data": [
+                                            [
+                                                "backward_engine",
+                                                {
+                                                    "type": "BackwardEngine",
+                                                    "data": {
+                                                        "model_str": "SpyLLMClient_default",
+                                                        "cache_path": {
+                                                            "type": "PosixPath",
+                                                            "data": "/root/.adalflow/cache_SpyLLMClient_default.db"
+                                                        },
+                                                        "callbacks": {
+                                                            "on_success": [],
+                                                            "on_failure": [],
+                                                            "on_complete": []
+                                                        },
+                                                        "cache": {
+                                                            "type": "Cache",
+                                                            "data": "<diskcache.core.Cache object at 0x7b5590117590>"
+                                                        },
+                                                        "_components": {
+                                                            "_ordered_dict": true,
+                                                            "data": [
+                                                                [
+                                                                    "model_client",
+                                                                    {
+                                                                        "type": "SpyLLMClient",
+                                                                        "data": {
+                                                                            "_components": {
+                                                                                "_ordered_dict": true,
+                                                                                "data": []
+                                                                            },
+                                                                            "_parameters": {
+                                                                                "_ordered_dict": true,
+                                                                                "data": []
+                                                                            },
+                                                                            "training": false,
+                                                                            "teacher_mode": false,
+                                                                            "tracing": false,
+                                                                            "name": "SpyLLMClient",
+                                                                            "_init_args": {
+                                                                                "model_name": null,
+                                                                                "role_name": "GENERIC"
+                                                                            },
+                                                                            "sync_client": null,
+                                                                            "async_client": null,
+                                                                            "model_name": "Qwen/Qwen2.5-7B-Instruct",
+                                                                            "tokenizer": {
+                                                                                "type": "Qwen2TokenizerFast",
+                                                                                "data": "Qwen2TokenizerFast(name_or_path='Qwen/Qwen2.5-7B-Instruct', vocab_size=151643, model_max_length=131072, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'eos_token': '<|im_end|>', 'pad_token': '<|endoftext|>', 'additional_special_tokens': ['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']}, clean_up_tokenization_spaces=False, added_tokens_decoder={\n\t151643: AddedToken(\"<|endoftext|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151644: AddedToken(\"<|im_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151645: AddedToken(\"<|im_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151646: AddedToken(\"<|object_ref_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151647: AddedToken(\"<|object_ref_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151648: AddedToken(\"<|box_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151649: AddedToken(\"<|box_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151650: AddedToken(\"<|quad_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151651: AddedToken(\"<|quad_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151652: AddedToken(\"<|vision_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151653: AddedToken(\"<|vision_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151654: AddedToken(\"<|vision_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151655: AddedToken(\"<|image_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151656: AddedToken(\"<|video_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151657: AddedToken(\"<tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151658: AddedToken(\"</tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151659: AddedToken(\"<|fim_prefix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151660: AddedToken(\"<|fim_middle|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151661: AddedToken(\"<|fim_suffix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151662: AddedToken(\"<|fim_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151663: AddedToken(\"<|repo_name|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151664: AddedToken(\"<|file_sep|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n}\n)"
+                                                                            },
+                                                                            "model": {
+                                                                                "type": "Qwen2ForCausalLM",
+                                                                                "data": "Qwen2ForCausalLM(\n  (model): Qwen2Model(\n    (embed_tokens): Embedding(152064, 3584)\n    (layers): ModuleList(\n      (0-27): 28 x Qwen2DecoderLayer(\n        (self_attn): Qwen2Attention(\n          (q_proj): Linear4bit(in_features=3584, out_features=3584, bias=True)\n          (k_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (v_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (o_proj): Linear4bit(in_features=3584, out_features=3584, bias=False)\n        )\n        (mlp): Qwen2MLP(\n          (gate_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (up_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (down_proj): Linear4bit(in_features=18944, out_features=3584, bias=False)\n          (act_fn): SiLUActivation()\n        )\n        (input_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n        (post_attention_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n      )\n    )\n    (norm): Qwen2RMSNorm((3584,), eps=1e-06)\n    (rotary_emb): Qwen2RotaryEmbedding()\n  )\n  (lm_head): Linear(in_features=3584, out_features=152064, bias=False)\n)"
+                                                                            },
+                                                                            "role_name": "TEACHER (CRITIC)"
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            ]
+                                                        },
+                                                        "_parameters": {
+                                                            "_ordered_dict": true,
+                                                            "data": []
+                                                        },
+                                                        "training": false,
+                                                        "teacher_mode": false,
+                                                        "tracing": false,
+                                                        "name": "BackwardEngine",
+                                                        "_init_args": {
+                                                            "kwargs": null
+                                                        },
+                                                        "id": "0b91dd75-5bd7-46cd-bafd-21e8252a648d",
+                                                        "desc": "Generate a response using LLM model.",
+                                                        "backward_engine": null,
+                                                        "template": "<START_OF_SYSTEM_PROMPT>\nYou MUST determining the root cause of a system error.\nYou start with an evaluation function that measures performance, and you receive the system input.\nThe system can be a a compound system, potentially consisting of multiple components.\nYou work on one component.\nYou will receive feedback from your direct successor component, and your goal is to investigate your component\u2019s inputs and outputs to identify whether any of your input variables are causing the error.\n\nYour target input variable is enclosed in <TARGET_VARIABLE> (representing one of the input variables that may or may not be causing the error).\nAlternatively, it may be enclosed in <VARIABLES> tags (in which case you must pass feedback to all variables, indicating which ones cause the errors and which do not).\n\n1. From <CONVERSATION></CONVERSATION> section, you can find how the variable is obtained and used.\n2. As there might be multiple precedessors, and multi-components, it is possible that the feedback/error is not directly related to the variable itself.\n3. When you reason, really think about the variable's role in the component(infer from the CONVERSATION section) and the VARIABLE section before you provide feedback.\n4. Be specific, concise, critical, and direct.\n5. Maximum 3 sentences.\n\n[Cycle]: If the same DataID has multiple gradients, it means this component/variable is called multiple times in the compound system(with a cycle) in the same order as it appears in the gradient list.\n   Ensure the feedback is aware of all sets of inputs and outputs.\n\n{% if output_format_str %}\n{{output_format_str}}\n{% endif %}\n\n<END_OF_SYSTEM_PROMPT>\n<START_OF_USER>\n<CONVERSATION>\n{{conversation_sec}}\n</CONVERSATION>\n<OBJECTIVE_INSTRUCTION>\n{{objective_instruction_sec}}\n</OBJECTIVE_INSTRUCTION>\n<END_OF_USER>\n",
+                                                        "prompt_kwargs": {},
+                                                        "model_kwargs": {
+                                                            "temperature": 0.7,
+                                                            "max_tokens": 4096
+                                                        },
+                                                        "model_type": {
+                                                            "type": "ModelType",
+                                                            "data": "ModelType.LLM"
+                                                        },
+                                                        "output_processors": null,
+                                                        "mock_output": false,
+                                                        "mock_output_data": "mock data",
+                                                        "_use_cache": true,
+                                                        "_kwargs": {
+                                                            "model_client": {
+                                                                "type": "SpyLLMClient",
+                                                                "data": {
+                                                                    "_components": {
+                                                                        "_ordered_dict": true,
+                                                                        "data": []
+                                                                    },
+                                                                    "_parameters": {
+                                                                        "_ordered_dict": true,
+                                                                        "data": []
+                                                                    },
+                                                                    "training": false,
+                                                                    "teacher_mode": false,
+                                                                    "tracing": false,
+                                                                    "name": "SpyLLMClient",
+                                                                    "_init_args": {
+                                                                        "model_name": null,
+                                                                        "role_name": "GENERIC"
+                                                                    },
+                                                                    "sync_client": null,
+                                                                    "async_client": null,
+                                                                    "model_name": "Qwen/Qwen2.5-7B-Instruct",
+                                                                    "tokenizer": {
+                                                                        "type": "Qwen2TokenizerFast",
+                                                                        "data": "Qwen2TokenizerFast(name_or_path='Qwen/Qwen2.5-7B-Instruct', vocab_size=151643, model_max_length=131072, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'eos_token': '<|im_end|>', 'pad_token': '<|endoftext|>', 'additional_special_tokens': ['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']}, clean_up_tokenization_spaces=False, added_tokens_decoder={\n\t151643: AddedToken(\"<|endoftext|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151644: AddedToken(\"<|im_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151645: AddedToken(\"<|im_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151646: AddedToken(\"<|object_ref_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151647: AddedToken(\"<|object_ref_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151648: AddedToken(\"<|box_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151649: AddedToken(\"<|box_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151650: AddedToken(\"<|quad_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151651: AddedToken(\"<|quad_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151652: AddedToken(\"<|vision_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151653: AddedToken(\"<|vision_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151654: AddedToken(\"<|vision_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151655: AddedToken(\"<|image_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151656: AddedToken(\"<|video_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151657: AddedToken(\"<tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151658: AddedToken(\"</tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151659: AddedToken(\"<|fim_prefix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151660: AddedToken(\"<|fim_middle|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151661: AddedToken(\"<|fim_suffix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151662: AddedToken(\"<|fim_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151663: AddedToken(\"<|repo_name|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151664: AddedToken(\"<|file_sep|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n}\n)"
+                                                                    },
+                                                                    "model": {
+                                                                        "type": "Qwen2ForCausalLM",
+                                                                        "data": "Qwen2ForCausalLM(\n  (model): Qwen2Model(\n    (embed_tokens): Embedding(152064, 3584)\n    (layers): ModuleList(\n      (0-27): 28 x Qwen2DecoderLayer(\n        (self_attn): Qwen2Attention(\n          (q_proj): Linear4bit(in_features=3584, out_features=3584, bias=True)\n          (k_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (v_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (o_proj): Linear4bit(in_features=3584, out_features=3584, bias=False)\n        )\n        (mlp): Qwen2MLP(\n          (gate_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (up_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (down_proj): Linear4bit(in_features=18944, out_features=3584, bias=False)\n          (act_fn): SiLUActivation()\n        )\n        (input_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n        (post_attention_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n      )\n    )\n    (norm): Qwen2RMSNorm((3584,), eps=1e-06)\n    (rotary_emb): Qwen2RotaryEmbedding()\n  )\n  (lm_head): Linear(in_features=3584, out_features=152064, bias=False)\n)"
+                                                                    },
+                                                                    "role_name": "TEACHER (CRITIC)"
+                                                                }
+                                                            },
+                                                            "model_kwargs": {
+                                                                "temperature": 0.7,
+                                                                "max_tokens": 4096
+                                                            },
+                                                            "template": "<START_OF_SYSTEM_PROMPT>\nYou MUST determining the root cause of a system error.\nYou start with an evaluation function that measures performance, and you receive the system input.\nThe system can be a a compound system, potentially consisting of multiple components.\nYou work on one component.\nYou will receive feedback from your direct successor component, and your goal is to investigate your component\u2019s inputs and outputs to identify whether any of your input variables are causing the error.\n\nYour target input variable is enclosed in <TARGET_VARIABLE> (representing one of the input variables that may or may not be causing the error).\nAlternatively, it may be enclosed in <VARIABLES> tags (in which case you must pass feedback to all variables, indicating which ones cause the errors and which do not).\n\n1. From <CONVERSATION></CONVERSATION> section, you can find how the variable is obtained and used.\n2. As there might be multiple precedessors, and multi-components, it is possible that the feedback/error is not directly related to the variable itself.\n3. When you reason, really think about the variable's role in the component(infer from the CONVERSATION section) and the VARIABLE section before you provide feedback.\n4. Be specific, concise, critical, and direct.\n5. Maximum 3 sentences.\n\n[Cycle]: If the same DataID has multiple gradients, it means this component/variable is called multiple times in the compound system(with a cycle) in the same order as it appears in the gradient list.\n   Ensure the feedback is aware of all sets of inputs and outputs.\n\n{% if output_format_str %}\n{{output_format_str}}\n{% endif %}\n\n<END_OF_SYSTEM_PROMPT>\n<START_OF_USER>\n<CONVERSATION>\n{{conversation_sec}}\n</CONVERSATION>\n<OBJECTIVE_INSTRUCTION>\n{{objective_instruction_sec}}\n</OBJECTIVE_INSTRUCTION>\n<END_OF_USER>\n",
+                                                            "prompt_kwargs": {},
+                                                            "output_processors": null,
+                                                            "name": null,
+                                                            "cache_path": null,
+                                                            "use_cache": true
+                                                        },
+                                                        "_teacher": null,
+                                                        "_trace_api_kwargs": {},
+                                                        "_tokenizer": {
+                                                            "type": "Tokenizer",
+                                                            "data": "<adalflow.core.tokenizer.Tokenizer object at 0x7b55900ee7e0>"
+                                                        },
+                                                        "_estimated_token_count": 0
+                                                    }
+                                                }
+                                            ]
+                                        ]
+                                    },
+                                    "_parameters": {
+                                        "_ordered_dict": true,
+                                        "data": []
+                                    },
+                                    "training": false,
+                                    "teacher_mode": false,
+                                    "tracing": false,
+                                    "name": "EvalFnToTextLoss",
+                                    "_init_args": {
+                                        "eval_fn": null,
+                                        "eval_fn_desc": null,
+                                        "backward_engine": null,
+                                        "model_client": null,
+                                        "model_kwargs": null
+                                    },
+                                    "id": "352aad7b-c96a-45dd-835d-a0c3a4b3cb4a",
+                                    "_disable_backward_engine": false,
+                                    "eval_fn": {
+                                        "type": "function",
+                                        "data": "<function ObjectCountAdalComponent.__init__.<locals>.exact_match_acc at 0x7b5594949da0>"
+                                    },
+                                    "eval_fn_desc": "exact_match: 1 if prediction matches ground truth integer, else 0"
+                                }
+                            }
+                        ],
+                        [
+                            "backward_engine",
+                            {
+                                "type": "BackwardEngine",
+                                "data": {
+                                    "model_str": "SpyLLMClient_default",
+                                    "cache_path": {
+                                        "type": "PosixPath",
+                                        "data": "/root/.adalflow/cache_SpyLLMClient_default.db"
+                                    },
+                                    "callbacks": {
+                                        "on_success": [],
+                                        "on_failure": [],
+                                        "on_complete": []
+                                    },
+                                    "cache": {
+                                        "type": "Cache",
+                                        "data": "<diskcache.core.Cache object at 0x7b5590117590>"
+                                    },
+                                    "_components": {
+                                        "_ordered_dict": true,
+                                        "data": [
+                                            [
+                                                "model_client",
+                                                {
+                                                    "type": "SpyLLMClient",
+                                                    "data": {
+                                                        "_components": {
+                                                            "_ordered_dict": true,
+                                                            "data": []
+                                                        },
+                                                        "_parameters": {
+                                                            "_ordered_dict": true,
+                                                            "data": []
+                                                        },
+                                                        "training": false,
+                                                        "teacher_mode": false,
+                                                        "tracing": false,
+                                                        "name": "SpyLLMClient",
+                                                        "_init_args": {
+                                                            "model_name": null,
+                                                            "role_name": "GENERIC"
+                                                        },
+                                                        "sync_client": null,
+                                                        "async_client": null,
+                                                        "model_name": "Qwen/Qwen2.5-7B-Instruct",
+                                                        "tokenizer": {
+                                                            "type": "Qwen2TokenizerFast",
+                                                            "data": "Qwen2TokenizerFast(name_or_path='Qwen/Qwen2.5-7B-Instruct', vocab_size=151643, model_max_length=131072, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'eos_token': '<|im_end|>', 'pad_token': '<|endoftext|>', 'additional_special_tokens': ['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']}, clean_up_tokenization_spaces=False, added_tokens_decoder={\n\t151643: AddedToken(\"<|endoftext|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151644: AddedToken(\"<|im_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151645: AddedToken(\"<|im_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151646: AddedToken(\"<|object_ref_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151647: AddedToken(\"<|object_ref_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151648: AddedToken(\"<|box_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151649: AddedToken(\"<|box_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151650: AddedToken(\"<|quad_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151651: AddedToken(\"<|quad_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151652: AddedToken(\"<|vision_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151653: AddedToken(\"<|vision_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151654: AddedToken(\"<|vision_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151655: AddedToken(\"<|image_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151656: AddedToken(\"<|video_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151657: AddedToken(\"<tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151658: AddedToken(\"</tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151659: AddedToken(\"<|fim_prefix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151660: AddedToken(\"<|fim_middle|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151661: AddedToken(\"<|fim_suffix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151662: AddedToken(\"<|fim_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151663: AddedToken(\"<|repo_name|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151664: AddedToken(\"<|file_sep|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n}\n)"
+                                                        },
+                                                        "model": {
+                                                            "type": "Qwen2ForCausalLM",
+                                                            "data": "Qwen2ForCausalLM(\n  (model): Qwen2Model(\n    (embed_tokens): Embedding(152064, 3584)\n    (layers): ModuleList(\n      (0-27): 28 x Qwen2DecoderLayer(\n        (self_attn): Qwen2Attention(\n          (q_proj): Linear4bit(in_features=3584, out_features=3584, bias=True)\n          (k_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (v_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (o_proj): Linear4bit(in_features=3584, out_features=3584, bias=False)\n        )\n        (mlp): Qwen2MLP(\n          (gate_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (up_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (down_proj): Linear4bit(in_features=18944, out_features=3584, bias=False)\n          (act_fn): SiLUActivation()\n        )\n        (input_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n        (post_attention_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n      )\n    )\n    (norm): Qwen2RMSNorm((3584,), eps=1e-06)\n    (rotary_emb): Qwen2RotaryEmbedding()\n  )\n  (lm_head): Linear(in_features=3584, out_features=152064, bias=False)\n)"
+                                                        },
+                                                        "role_name": "TEACHER (CRITIC)"
+                                                    }
+                                                }
+                                            ]
+                                        ]
+                                    },
+                                    "_parameters": {
+                                        "_ordered_dict": true,
+                                        "data": []
+                                    },
+                                    "training": false,
+                                    "teacher_mode": false,
+                                    "tracing": false,
+                                    "name": "BackwardEngine",
+                                    "_init_args": {
+                                        "kwargs": null
+                                    },
+                                    "id": "0b91dd75-5bd7-46cd-bafd-21e8252a648d",
+                                    "desc": "Generate a response using LLM model.",
+                                    "backward_engine": null,
+                                    "template": "<START_OF_SYSTEM_PROMPT>\nYou MUST determining the root cause of a system error.\nYou start with an evaluation function that measures performance, and you receive the system input.\nThe system can be a a compound system, potentially consisting of multiple components.\nYou work on one component.\nYou will receive feedback from your direct successor component, and your goal is to investigate your component\u2019s inputs and outputs to identify whether any of your input variables are causing the error.\n\nYour target input variable is enclosed in <TARGET_VARIABLE> (representing one of the input variables that may or may not be causing the error).\nAlternatively, it may be enclosed in <VARIABLES> tags (in which case you must pass feedback to all variables, indicating which ones cause the errors and which do not).\n\n1. From <CONVERSATION></CONVERSATION> section, you can find how the variable is obtained and used.\n2. As there might be multiple precedessors, and multi-components, it is possible that the feedback/error is not directly related to the variable itself.\n3. When you reason, really think about the variable's role in the component(infer from the CONVERSATION section) and the VARIABLE section before you provide feedback.\n4. Be specific, concise, critical, and direct.\n5. Maximum 3 sentences.\n\n[Cycle]: If the same DataID has multiple gradients, it means this component/variable is called multiple times in the compound system(with a cycle) in the same order as it appears in the gradient list.\n   Ensure the feedback is aware of all sets of inputs and outputs.\n\n{% if output_format_str %}\n{{output_format_str}}\n{% endif %}\n\n<END_OF_SYSTEM_PROMPT>\n<START_OF_USER>\n<CONVERSATION>\n{{conversation_sec}}\n</CONVERSATION>\n<OBJECTIVE_INSTRUCTION>\n{{objective_instruction_sec}}\n</OBJECTIVE_INSTRUCTION>\n<END_OF_USER>\n",
+                                    "prompt_kwargs": {},
+                                    "model_kwargs": {
+                                        "temperature": 0.7,
+                                        "max_tokens": 4096
+                                    },
+                                    "model_type": {
+                                        "type": "ModelType",
+                                        "data": "ModelType.LLM"
+                                    },
+                                    "output_processors": null,
+                                    "mock_output": false,
+                                    "mock_output_data": "mock data",
+                                    "_use_cache": true,
+                                    "_kwargs": {
+                                        "model_client": {
+                                            "type": "SpyLLMClient",
+                                            "data": {
+                                                "_components": {
+                                                    "_ordered_dict": true,
+                                                    "data": []
+                                                },
+                                                "_parameters": {
+                                                    "_ordered_dict": true,
+                                                    "data": []
+                                                },
+                                                "training": false,
+                                                "teacher_mode": false,
+                                                "tracing": false,
+                                                "name": "SpyLLMClient",
+                                                "_init_args": {
+                                                    "model_name": null,
+                                                    "role_name": "GENERIC"
+                                                },
+                                                "sync_client": null,
+                                                "async_client": null,
+                                                "model_name": "Qwen/Qwen2.5-7B-Instruct",
+                                                "tokenizer": {
+                                                    "type": "Qwen2TokenizerFast",
+                                                    "data": "Qwen2TokenizerFast(name_or_path='Qwen/Qwen2.5-7B-Instruct', vocab_size=151643, model_max_length=131072, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'eos_token': '<|im_end|>', 'pad_token': '<|endoftext|>', 'additional_special_tokens': ['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']}, clean_up_tokenization_spaces=False, added_tokens_decoder={\n\t151643: AddedToken(\"<|endoftext|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151644: AddedToken(\"<|im_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151645: AddedToken(\"<|im_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151646: AddedToken(\"<|object_ref_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151647: AddedToken(\"<|object_ref_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151648: AddedToken(\"<|box_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151649: AddedToken(\"<|box_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151650: AddedToken(\"<|quad_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151651: AddedToken(\"<|quad_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151652: AddedToken(\"<|vision_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151653: AddedToken(\"<|vision_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151654: AddedToken(\"<|vision_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151655: AddedToken(\"<|image_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151656: AddedToken(\"<|video_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151657: AddedToken(\"<tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151658: AddedToken(\"</tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151659: AddedToken(\"<|fim_prefix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151660: AddedToken(\"<|fim_middle|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151661: AddedToken(\"<|fim_suffix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151662: AddedToken(\"<|fim_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151663: AddedToken(\"<|repo_name|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151664: AddedToken(\"<|file_sep|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n}\n)"
+                                                },
+                                                "model": {
+                                                    "type": "Qwen2ForCausalLM",
+                                                    "data": "Qwen2ForCausalLM(\n  (model): Qwen2Model(\n    (embed_tokens): Embedding(152064, 3584)\n    (layers): ModuleList(\n      (0-27): 28 x Qwen2DecoderLayer(\n        (self_attn): Qwen2Attention(\n          (q_proj): Linear4bit(in_features=3584, out_features=3584, bias=True)\n          (k_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (v_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (o_proj): Linear4bit(in_features=3584, out_features=3584, bias=False)\n        )\n        (mlp): Qwen2MLP(\n          (gate_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (up_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (down_proj): Linear4bit(in_features=18944, out_features=3584, bias=False)\n          (act_fn): SiLUActivation()\n        )\n        (input_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n        (post_attention_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n      )\n    )\n    (norm): Qwen2RMSNorm((3584,), eps=1e-06)\n    (rotary_emb): Qwen2RotaryEmbedding()\n  )\n  (lm_head): Linear(in_features=3584, out_features=152064, bias=False)\n)"
+                                                },
+                                                "role_name": "TEACHER (CRITIC)"
+                                            }
+                                        },
+                                        "model_kwargs": {
+                                            "temperature": 0.7,
+                                            "max_tokens": 4096
+                                        },
+                                        "template": "<START_OF_SYSTEM_PROMPT>\nYou MUST determining the root cause of a system error.\nYou start with an evaluation function that measures performance, and you receive the system input.\nThe system can be a a compound system, potentially consisting of multiple components.\nYou work on one component.\nYou will receive feedback from your direct successor component, and your goal is to investigate your component\u2019s inputs and outputs to identify whether any of your input variables are causing the error.\n\nYour target input variable is enclosed in <TARGET_VARIABLE> (representing one of the input variables that may or may not be causing the error).\nAlternatively, it may be enclosed in <VARIABLES> tags (in which case you must pass feedback to all variables, indicating which ones cause the errors and which do not).\n\n1. From <CONVERSATION></CONVERSATION> section, you can find how the variable is obtained and used.\n2. As there might be multiple precedessors, and multi-components, it is possible that the feedback/error is not directly related to the variable itself.\n3. When you reason, really think about the variable's role in the component(infer from the CONVERSATION section) and the VARIABLE section before you provide feedback.\n4. Be specific, concise, critical, and direct.\n5. Maximum 3 sentences.\n\n[Cycle]: If the same DataID has multiple gradients, it means this component/variable is called multiple times in the compound system(with a cycle) in the same order as it appears in the gradient list.\n   Ensure the feedback is aware of all sets of inputs and outputs.\n\n{% if output_format_str %}\n{{output_format_str}}\n{% endif %}\n\n<END_OF_SYSTEM_PROMPT>\n<START_OF_USER>\n<CONVERSATION>\n{{conversation_sec}}\n</CONVERSATION>\n<OBJECTIVE_INSTRUCTION>\n{{objective_instruction_sec}}\n</OBJECTIVE_INSTRUCTION>\n<END_OF_USER>\n",
+                                        "prompt_kwargs": {},
+                                        "output_processors": null,
+                                        "name": null,
+                                        "cache_path": null,
+                                        "use_cache": true
+                                    },
+                                    "_teacher": null,
+                                    "_trace_api_kwargs": {},
+                                    "_tokenizer": {
+                                        "type": "Tokenizer",
+                                        "data": "<adalflow.core.tokenizer.Tokenizer object at 0x7b55900ee7e0>"
+                                    },
+                                    "_estimated_token_count": 0
+                                }
+                            }
+                        ]
+                    ]
+                },
+                "_parameters": {
+                    "_ordered_dict": true,
+                    "data": []
+                },
+                "training": false,
+                "teacher_mode": false,
+                "tracing": false,
+                "name": "ObjectCountAdalComponent",
+                "_init_args": {
+                    "model_client": null,
+                    "model_kwargs": null,
+                    "backward_engine_model_config": null,
+                    "teacher_model_config": null,
+                    "text_optimizer_model_config": null
+                },
+                "eval_fn": {
+                    "type": "function",
+                    "data": "<function ObjectCountAdalComponent.__init__.<locals>.exact_match_acc at 0x7b5594949da0>"
+                },
+                "loss_eval_fn": null,
+                "backward_engine_model_config": {
+                    "model_client": {
+                        "type": "SpyLLMClient",
+                        "data": {
+                            "_components": {
+                                "_ordered_dict": true,
+                                "data": []
+                            },
+                            "_parameters": {
+                                "_ordered_dict": true,
+                                "data": []
+                            },
+                            "training": false,
+                            "teacher_mode": false,
+                            "tracing": false,
+                            "name": "SpyLLMClient",
+                            "_init_args": {
+                                "model_name": null,
+                                "role_name": "GENERIC"
+                            },
+                            "sync_client": null,
+                            "async_client": null,
+                            "model_name": "Qwen/Qwen2.5-7B-Instruct",
+                            "tokenizer": {
+                                "type": "Qwen2TokenizerFast",
+                                "data": "Qwen2TokenizerFast(name_or_path='Qwen/Qwen2.5-7B-Instruct', vocab_size=151643, model_max_length=131072, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'eos_token': '<|im_end|>', 'pad_token': '<|endoftext|>', 'additional_special_tokens': ['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']}, clean_up_tokenization_spaces=False, added_tokens_decoder={\n\t151643: AddedToken(\"<|endoftext|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151644: AddedToken(\"<|im_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151645: AddedToken(\"<|im_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151646: AddedToken(\"<|object_ref_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151647: AddedToken(\"<|object_ref_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151648: AddedToken(\"<|box_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151649: AddedToken(\"<|box_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151650: AddedToken(\"<|quad_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151651: AddedToken(\"<|quad_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151652: AddedToken(\"<|vision_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151653: AddedToken(\"<|vision_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151654: AddedToken(\"<|vision_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151655: AddedToken(\"<|image_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151656: AddedToken(\"<|video_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151657: AddedToken(\"<tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151658: AddedToken(\"</tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151659: AddedToken(\"<|fim_prefix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151660: AddedToken(\"<|fim_middle|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151661: AddedToken(\"<|fim_suffix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151662: AddedToken(\"<|fim_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151663: AddedToken(\"<|repo_name|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151664: AddedToken(\"<|file_sep|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n}\n)"
+                            },
+                            "model": {
+                                "type": "Qwen2ForCausalLM",
+                                "data": "Qwen2ForCausalLM(\n  (model): Qwen2Model(\n    (embed_tokens): Embedding(152064, 3584)\n    (layers): ModuleList(\n      (0-27): 28 x Qwen2DecoderLayer(\n        (self_attn): Qwen2Attention(\n          (q_proj): Linear4bit(in_features=3584, out_features=3584, bias=True)\n          (k_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (v_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (o_proj): Linear4bit(in_features=3584, out_features=3584, bias=False)\n        )\n        (mlp): Qwen2MLP(\n          (gate_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (up_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (down_proj): Linear4bit(in_features=18944, out_features=3584, bias=False)\n          (act_fn): SiLUActivation()\n        )\n        (input_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n        (post_attention_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n      )\n    )\n    (norm): Qwen2RMSNorm((3584,), eps=1e-06)\n    (rotary_emb): Qwen2RotaryEmbedding()\n  )\n  (lm_head): Linear(in_features=3584, out_features=152064, bias=False)\n)"
+                            },
+                            "role_name": "TEACHER (CRITIC)"
+                        }
+                    },
+                    "model_kwargs": {
+                        "temperature": 0.7,
+                        "max_tokens": 4096
+                    }
+                },
+                "teacher_model_config": {
+                    "model_client": {
+                        "type": "SpyLLMClient",
+                        "data": {
+                            "_components": {
+                                "_ordered_dict": true,
+                                "data": []
+                            },
+                            "_parameters": {
+                                "_ordered_dict": true,
+                                "data": []
+                            },
+                            "training": false,
+                            "teacher_mode": false,
+                            "tracing": false,
+                            "name": "SpyLLMClient",
+                            "_init_args": {
+                                "model_name": null,
+                                "role_name": "GENERIC"
+                            },
+                            "sync_client": null,
+                            "async_client": null,
+                            "model_name": "Qwen/Qwen2.5-7B-Instruct",
+                            "tokenizer": {
+                                "type": "Qwen2TokenizerFast",
+                                "data": "Qwen2TokenizerFast(name_or_path='Qwen/Qwen2.5-7B-Instruct', vocab_size=151643, model_max_length=131072, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'eos_token': '<|im_end|>', 'pad_token': '<|endoftext|>', 'additional_special_tokens': ['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']}, clean_up_tokenization_spaces=False, added_tokens_decoder={\n\t151643: AddedToken(\"<|endoftext|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151644: AddedToken(\"<|im_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151645: AddedToken(\"<|im_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151646: AddedToken(\"<|object_ref_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151647: AddedToken(\"<|object_ref_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151648: AddedToken(\"<|box_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151649: AddedToken(\"<|box_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151650: AddedToken(\"<|quad_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151651: AddedToken(\"<|quad_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151652: AddedToken(\"<|vision_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151653: AddedToken(\"<|vision_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151654: AddedToken(\"<|vision_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151655: AddedToken(\"<|image_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151656: AddedToken(\"<|video_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151657: AddedToken(\"<tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151658: AddedToken(\"</tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151659: AddedToken(\"<|fim_prefix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151660: AddedToken(\"<|fim_middle|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151661: AddedToken(\"<|fim_suffix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151662: AddedToken(\"<|fim_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151663: AddedToken(\"<|repo_name|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151664: AddedToken(\"<|file_sep|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n}\n)"
+                            },
+                            "model": {
+                                "type": "Qwen2ForCausalLM",
+                                "data": "Qwen2ForCausalLM(\n  (model): Qwen2Model(\n    (embed_tokens): Embedding(152064, 3584)\n    (layers): ModuleList(\n      (0-27): 28 x Qwen2DecoderLayer(\n        (self_attn): Qwen2Attention(\n          (q_proj): Linear4bit(in_features=3584, out_features=3584, bias=True)\n          (k_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (v_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (o_proj): Linear4bit(in_features=3584, out_features=3584, bias=False)\n        )\n        (mlp): Qwen2MLP(\n          (gate_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (up_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (down_proj): Linear4bit(in_features=18944, out_features=3584, bias=False)\n          (act_fn): SiLUActivation()\n        )\n        (input_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n        (post_attention_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n      )\n    )\n    (norm): Qwen2RMSNorm((3584,), eps=1e-06)\n    (rotary_emb): Qwen2RotaryEmbedding()\n  )\n  (lm_head): Linear(in_features=3584, out_features=152064, bias=False)\n)"
+                            },
+                            "role_name": "TEACHER (CRITIC)"
+                        }
+                    },
+                    "model_kwargs": {
+                        "temperature": 0.7,
+                        "max_tokens": 4096
+                    }
+                },
+                "text_optimizer_model_config": {
+                    "model_client": {
+                        "type": "SpyLLMClient",
+                        "data": {
+                            "_components": {
+                                "_ordered_dict": true,
+                                "data": []
+                            },
+                            "_parameters": {
+                                "_ordered_dict": true,
+                                "data": []
+                            },
+                            "training": false,
+                            "teacher_mode": false,
+                            "tracing": false,
+                            "name": "SpyLLMClient",
+                            "_init_args": {
+                                "model_name": null,
+                                "role_name": "GENERIC"
+                            },
+                            "sync_client": null,
+                            "async_client": null,
+                            "model_name": "Qwen/Qwen2.5-7B-Instruct",
+                            "tokenizer": {
+                                "type": "Qwen2TokenizerFast",
+                                "data": "Qwen2TokenizerFast(name_or_path='Qwen/Qwen2.5-7B-Instruct', vocab_size=151643, model_max_length=131072, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'eos_token': '<|im_end|>', 'pad_token': '<|endoftext|>', 'additional_special_tokens': ['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']}, clean_up_tokenization_spaces=False, added_tokens_decoder={\n\t151643: AddedToken(\"<|endoftext|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151644: AddedToken(\"<|im_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151645: AddedToken(\"<|im_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151646: AddedToken(\"<|object_ref_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151647: AddedToken(\"<|object_ref_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151648: AddedToken(\"<|box_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151649: AddedToken(\"<|box_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151650: AddedToken(\"<|quad_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151651: AddedToken(\"<|quad_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151652: AddedToken(\"<|vision_start|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151653: AddedToken(\"<|vision_end|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151654: AddedToken(\"<|vision_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151655: AddedToken(\"<|image_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151656: AddedToken(\"<|video_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),\n\t151657: AddedToken(\"<tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151658: AddedToken(\"</tool_call>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151659: AddedToken(\"<|fim_prefix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151660: AddedToken(\"<|fim_middle|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151661: AddedToken(\"<|fim_suffix|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151662: AddedToken(\"<|fim_pad|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151663: AddedToken(\"<|repo_name|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n\t151664: AddedToken(\"<|file_sep|>\", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),\n}\n)"
+                            },
+                            "model": {
+                                "type": "Qwen2ForCausalLM",
+                                "data": "Qwen2ForCausalLM(\n  (model): Qwen2Model(\n    (embed_tokens): Embedding(152064, 3584)\n    (layers): ModuleList(\n      (0-27): 28 x Qwen2DecoderLayer(\n        (self_attn): Qwen2Attention(\n          (q_proj): Linear4bit(in_features=3584, out_features=3584, bias=True)\n          (k_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (v_proj): Linear4bit(in_features=3584, out_features=512, bias=True)\n          (o_proj): Linear4bit(in_features=3584, out_features=3584, bias=False)\n        )\n        (mlp): Qwen2MLP(\n          (gate_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (up_proj): Linear4bit(in_features=3584, out_features=18944, bias=False)\n          (down_proj): Linear4bit(in_features=18944, out_features=3584, bias=False)\n          (act_fn): SiLUActivation()\n        )\n        (input_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n        (post_attention_layernorm): Qwen2RMSNorm((3584,), eps=1e-06)\n      )\n    )\n    (norm): Qwen2RMSNorm((3584,), eps=1e-06)\n    (rotary_emb): Qwen2RotaryEmbedding()\n  )\n  (lm_head): Linear(in_features=3584, out_features=152064, bias=False)\n)"
+                            },
+                            "role_name": "OPTIMIZER (BRAIN)"
+                        }
+                    },
+                    "model_kwargs": {
+                        "temperature": 0.7,
+                        "max_tokens": 4096
+                    }
+                },
+                "_demo_optimizers": [],
+                "_text_optimizers": [
+                    {
+                        "template": "<START_OF_SYSTEM_PROMPT>\n{{optimizer_system_prompt}}\n<END_OF_SYSTEM_PROMPT>\n<START_OF_USER_MESSAGE>\nYou are {{steps}} steps since your last improvement.\nUpdate the value more rapidly when steps are larger than 3.\n{# Variable and peers info #}\n<START_OF_VARIABLE_AND_PEERS_INFO>\n{{variable_and_peers_info}}\n<END_OF_VARIABLE_AND_PEERS_INFO>\n{# system trainable variables #}\n{% if system_variables %}\n<START_OF_SYSTEM_VARIABLES>\nThe target variable is used together with these system variables besides of its peers:\n{% for system_variable in system_variables %}\n{{loop.index}}.\nName: {{system_variable.name}}\nType: {{system_variable.param_type}}\nDescription: {{system_variable.role_desc}}\nWILL_BE_OPTIMIZED: {{system_variable.requires_opt}}\nValue: {{system_variable.prompt_data}}\n{% endfor %}\nStrategically plan the role of each system variable to collaborate with each other for final correct answer.\n<END_OF_SYSTEM_VARIABLES>\n{% endif %}\n{# OPRO past history #}\n{% if past_history %}\n<START_OF_HISTORY_PERFORMANCE>\nHere are the best past iterations.\n{% for history in past_history %}\n{{loop.index}}. {{history}}\n{% endfor %}\nIMPORTANT: Your goal is to generate new variable that score higher than all past iterations.\n<END_OF_HISTORY_PERFORMANCE>\n{% endif %}\n{# Multi-proposal history #}\n{% if failed_proposals %}\n<START_OF_CURRENT_ITERATION>\nsame batch, same feedback: Here are the values you have tried that have not improved the score.(scored <= {{best_score}}):\n{% for failed_proposal in failed_proposals %}\n{{loop.index}}. {{failed_proposal}}\n{% endfor %}\nYou MUST approach differently from the above methods.\n<END_OF_CURRENT_ITERATION>\n{% endif %}\n{# Feedback #}\n{% if variable_grad %}\n<START_OF_CONTEXT_FEEDBACK>\nHere are the context and feedback for the variable:\n{{variable_grad}}\n<END_OF_CONTEXT_FEEDBACK>\n{% endif %}\n{# Constraints #}\n{% if constraint_text %}\nYou must follow the following constraints:\n<CONSTRAINTS>{{constraint_text}}</CONSTRAINTS>\n{% endif %}\n{# In-context examples #}\n{% if in_context_examples %}\nYou must base on the following examples when modifying the {{variable_desc}}:\n<EXAMPLES>{{in_context_examples}}</EXAMPLES>\n{% endif %}\n<END_OF_USER_MESSAGE>\n",
+                        "optimizer_system_prompt": "You are an excellent prompt engineer tasked with instruction and demonstration tuning a compound LLM system.\nYour task is to refine a variable/prompt based on feedback from a batch of input data points.\n\nThe variable is either input or output of a functional component where the component schema will be provided.\nIf the same DataID has multiple gradients, it means this component/variable is called multiple times in the compound system(with a cycle) in the same order as it appears in the gradient list.\n\nYou Must edit the current variable with one of the following editing methods.\nYou can not rewrite everything all at once:\n\nYou have Four Editing Methods:\n1. ADD new elements(instruction) to address each specific feedback.\n2. ADD Examples (e.g., input-reasoning-answer) for tasks that require strong reasoning skills.\n3. Rephrase existing instruction(for more clarity), Replace existing sample with another, to address the feedback.\n4. DELETE unnecessary words to improve clarity.\n\nThese SIX prompting techniques can be a helpful direction.\n1. Set Context and Role: Establish a specific identity or domain expertise for the AI to guide style, knowledge, and constraints.\n2. Be Specific, Clear, and Grammarly correct: Clearly define instructions, desired format, and constraints to ensure accurate and relevant outputs with regards to the feedback.\n3. Illicit reasoning: \"chain-of-thought\" (e.g. \"think step by step\") helps the model reason better.\n4. Examples: Construct examples(e.g., input(optional)-reasoning(required)-answer) especially for tasks that require strong reasoning skills.\n5. Leverage Constraints and Formatting: Explicitly direct how the answer should be structured (e.g., bullet points, tables, or tone).\n6. Self-Consistency / Verification Prompts: Prompt the model to check its own logic for errors, inconsistencies, or missing details.\n\nYour final action/reasoning  = one of FOUR editing method + one of SIX prompting technique.\n\nYou must stick to these instructions:\n1. **MUST Resolve concerns raised in the feedback** while preserving the positive aspects of the original variable.\n2. **Observe past performance patterns** to retain good qualities in the variable and past failed ones to try things differently.\n3. **System Awareness**: When other system variables are given, ensure you understand how this variable works in the whole system.\n4. **Peer Awareness**: This variable works together with Peer variables, ensure you are aware of their roles and constraints.\n5. **Batch Awareness**: You are optimizing a batch of input data, ensure the change applys to the whole batch (except while using demonstration.)\n\n{{output_format_str}}\n\n{% if instruction_to_optimizer %}\n**Additional User Instructions**: {{instruction_to_optimizer}}\n{% endif %}\n",
+                        "VARIABLE_AND_PEERS_INFO": "\n<START_OF_VARIABLE_DESC>\n<NAME> {{variable.name}} </NAME>\n<TYPE> {{variable.param_type}} </TYPE>\n<ROLE> {{variable.role_desc}} </ROLE>\n<VARIABLE>{{ variable.prompt_data}}</VARIABLE>\n<END_OF_VARIABLE_DESC>\n{% if peers %}\n<VARIBLE_PEERS>\n{% for peer in peers %}\n{{loop.index}}.\nPEER_NAME: {{peer.name}},\nPEER_TYPE: {{peer.param_type}},\nPEER_ROLE: {{peer.role_desc}}\nWILL_BE_OPTIMIZED: {{peer.requires_opt}}\n{% if peer.prompt_data %}\nPEER_VARIABLE: {{peer.prompt_data}}\n{% else %}\nPEER_VARIABLE: EMPTY\n{% endif %}\n{% endfor %}\n</VARIBLE_PEERS>\n{% endif %}\n",
+                        "params": [
+                            {
+                                "name": "system_prompt",
+                                "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                                "role_desc": "Task Instructions",
+                                "data": "You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string. For each identified numerical value, ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. Sum up all the identified numerical values. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nSteps:\n1. Read the input string carefully.\n2. Identify and extract all the numerical values.\n3. Sum up all the extracted numerical values.\n4. Write the final answer in the specified format.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19",
+                                "requires_opt": true,
+                                "param_type": "prompt (Instruction to the language model on task, data, and format.)",
+                                "predecessors": [],
+                                "gradients": [
+                                    {
+                                        "data_id": "ee487534-7a62-4293-9e9d-087e0adea976",
+                                        "from_response_component_id": "f057f9e0-60db-4a5a-bdda-14c50387ec06",
+                                        "order": 0,
+                                        "from_response_id": "bddecbfb-7729-4127-b555-a28a212c4503",
+                                        "to_pred_id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                                        "score": 1.0,
+                                        "context": {
+                                            "variable_desc": "Task Instructions",
+                                            "input_output": "\nLM_INPUT: {'input_str': 'I see 7 violins and 2 flutes.'}\nLM_OUTPUT:  Answer: 9\n",
+                                            "response_desc": "Output from (llm) Generator"
+                                        },
+                                        "data": "Eval score: 1.0. No noticeable error.",
+                                        "prompt": "<START_OF_SYSTEM_PROMPT>\nYou MUST determining the root cause of a system error.\nYou start with an evaluation function that measures performance, and you receive the system input.\nThe system can be a a compound system, potentially consisting of multiple components.\nYou work on one component.\nYou will receive feedback from your direct successor component, and your goal is to investigate your component\u2019s inputs and outputs to identify whether any of your input variables are causing the error.\n\nYour target input variable is enclosed in <TARGET_VARIABLE> (representing one of the input variables that may or may not be causing the error).\nAlternatively, it may be enclosed in <VARIABLES> tags (in which case you must pass feedback to all variables, indicating which ones cause the errors and which do not).\n\n1. From <CONVERSATION></CONVERSATION> section, you can find how the variable is obtained and used.\n2. As there might be multiple precedessors, and multi-components, it is possible that the feedback/error is not directly related to the variable itself.\n3. When you reason, really think about the variable's role in the component(infer from the CONVERSATION section) and the VARIABLE section before you provide feedback.\n4. Be specific, concise, critical, and direct.\n5. Maximum 3 sentences.\n\n[Cycle]: If the same DataID has multiple gradients, it means this component/variable is called multiple times in the compound system(with a cycle) in the same order as it appears in the gradient list.\n   Ensure the feedback is aware of all sets of inputs and outputs.\n\n\n<END_OF_SYSTEM_PROMPT>\n<START_OF_USER>\n<CONVERSATION>\n\n\n<START_OF_VARIABLE_DESC>\n<NAME> system_prompt </NAME>\n<TYPE> prompt (Instruction to the language model on task, data, and format.) </TYPE>\n<ROLE> Task Instructions </ROLE>\n<VARIABLE>You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string and sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19</VARIABLE>\n<END_OF_VARIABLE_DESC>\n\n\n<START_OF_PREDECESSORS>\nThe target variable is used together with these predecessors variables besides of the peers:\n1.\nName: system_prompt\nType: prompt (Instruction to the language model on task, data, and format.)\nDescription: Task Instructions\nWILL_BE_OPTIMIZED: True\nValue: You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string and sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19\n2.\nName: Generator_input_str\nType: input (The input to the component.)\nDescription: \nWILL_BE_OPTIMIZED: False\nValue: I see 7 violins and 2 flutes.\n<END_OF_PREDECESSORS>\n\nHere is the inputs and output with this component(LM):\n\nLM_INPUT: {'input_str': 'I see 7 violins and 2 flutes.'}\nLM_OUTPUT:  Answer: 9\n\n\n</CONVERSATION>\n<OBJECTIVE_INSTRUCTION>\n\nThis component is part of a larger system. The <LM_OUTPUT> was later used as Output from (llm) Generator.\n<OBJECTIVE_FUNCTION>\nYour goal is to give feedback to the variable to guide the LLM_OUTPUT according to feedback: 0. expected answer: None,\n Feedback: The score is 1.0, indicating that the output from the Generator, \"Answer: 9\", exactly matches the ground truth value of 9. There is no discrepancy between the expected correct response and the actual response. Therefore, there is no need for feedback on this variable.\n\n</OBJECTIVE_FUNCTION>\n</OBJECTIVE_INSTRUCTION>\n<END_OF_USER>\n",
+                                        "is_default_copy": false
+                                    },
+                                    {
+                                        "data_id": "eeced654-9e34-4474-a169-e260b4e3015a",
+                                        "from_response_component_id": "f057f9e0-60db-4a5a-bdda-14c50387ec06",
+                                        "order": 1,
+                                        "from_response_id": "1f26d702-2161-4cd1-8aa4-8874d5fe007d",
+                                        "to_pred_id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                                        "score": 1.0,
+                                        "context": {
+                                            "variable_desc": "Task Instructions",
+                                            "input_output": "\nLM_INPUT: {'input_str': 'I see 8 violins and 3 flutes.'}\nLM_OUTPUT:  The numerical values identified are 8 for violins and 3 for flutes. Summing these gives:\n\n\\[ 8 + 3 = 11 \\]\n\nTherefore, the total number of musical instruments is 11.\n\nAnswer: 11\n",
+                                            "response_desc": "Output from (llm) Generator"
+                                        },
+                                        "data": "Eval score: 1.0. No noticeable error.",
+                                        "prompt": "<START_OF_SYSTEM_PROMPT>\nYou MUST determining the root cause of a system error.\nYou start with an evaluation function that measures performance, and you receive the system input.\nThe system can be a a compound system, potentially consisting of multiple components.\nYou work on one component.\nYou will receive feedback from your direct successor component, and your goal is to investigate your component\u2019s inputs and outputs to identify whether any of your input variables are causing the error.\n\nYour target input variable is enclosed in <TARGET_VARIABLE> (representing one of the input variables that may or may not be causing the error).\nAlternatively, it may be enclosed in <VARIABLES> tags (in which case you must pass feedback to all variables, indicating which ones cause the errors and which do not).\n\n1. From <CONVERSATION></CONVERSATION> section, you can find how the variable is obtained and used.\n2. As there might be multiple precedessors, and multi-components, it is possible that the feedback/error is not directly related to the variable itself.\n3. When you reason, really think about the variable's role in the component(infer from the CONVERSATION section) and the VARIABLE section before you provide feedback.\n4. Be specific, concise, critical, and direct.\n5. Maximum 3 sentences.\n\n[Cycle]: If the same DataID has multiple gradients, it means this component/variable is called multiple times in the compound system(with a cycle) in the same order as it appears in the gradient list.\n   Ensure the feedback is aware of all sets of inputs and outputs.\n\n\n<END_OF_SYSTEM_PROMPT>\n<START_OF_USER>\n<CONVERSATION>\n\n\n<START_OF_VARIABLE_DESC>\n<NAME> system_prompt </NAME>\n<TYPE> prompt (Instruction to the language model on task, data, and format.) </TYPE>\n<ROLE> Task Instructions </ROLE>\n<VARIABLE>You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string and sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19</VARIABLE>\n<END_OF_VARIABLE_DESC>\n\n\n<START_OF_PREDECESSORS>\nThe target variable is used together with these predecessors variables besides of the peers:\n1.\nName: system_prompt\nType: prompt (Instruction to the language model on task, data, and format.)\nDescription: Task Instructions\nWILL_BE_OPTIMIZED: True\nValue: You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string and sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19\n2.\nName: Generator_input_str\nType: input (The input to the component.)\nDescription: \nWILL_BE_OPTIMIZED: False\nValue: I see 8 violins and 3 flutes.\n<END_OF_PREDECESSORS>\n\nHere is the inputs and output with this component(LM):\n\nLM_INPUT: {'input_str': 'I see 8 violins and 3 flutes.'}\nLM_OUTPUT:  The numerical values identified are 8 for violins and 3 for flutes. Summing these gives:\n\n\\[ 8 + 3 = 11 \\]\n\nTherefore, the total number of musical instruments is 11.\n\nAnswer: 11\n\n\n</CONVERSATION>\n<OBJECTIVE_INSTRUCTION>\n\nThis component is part of a larger system. The <LM_OUTPUT> was later used as Output from (llm) Generator.\n<OBJECTIVE_FUNCTION>\nYour goal is to give feedback to the variable to guide the LLM_OUTPUT according to feedback: 0. expected answer: None,\n Feedback: The score is 1.0, indicating that the output from the Generator (Generator_outputy_pred_0) correctly matches the ground truth value. Therefore, there is no need for feedback on this specific variable. However, if the score was low, I would provide detailed reasoning on the discrepancy between the expected correct response and the actual response.\n\n</OBJECTIVE_FUNCTION>\n</OBJECTIVE_INSTRUCTION>\n<END_OF_USER>\n",
+                                        "is_default_copy": false
+                                    }
+                                ],
+                                "previous_data": null,
+                                "grad_fn": "None",
+                                "score": 1.0,
+                                "traces": {},
+                                "demos": []
+                            }
+                        ],
+                        "constraints": [],
+                        "params_history": {
+                            "38d0d6eb-a27d-40f8-91b0-d7d07ece278f": [
+                                {
+                                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                                    "value": "You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string. For each identified numerical value, ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. Sum up all the identified numerical values. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nSteps:\n1. Read the input string carefully.\n2. Identify and extract all the numerical values.\n3. Sum up all the extracted numerical values.\n4. Write the final answer in the specified format.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19",
+                                    "eval_score": 0.93,
+                                    "method": null,
+                                    "reasoning": null
+                                },
+                                {
+                                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                                    "value": "You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string and sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19",
+                                    "eval_score": 0.91,
+                                    "method": null,
+                                    "reasoning": null
+                                }
+                            ]
+                        },
+                        "failed_proposals": {
+                            "38d0d6eb-a27d-40f8-91b0-d7d07ece278f": [
+                                {
+                                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                                    "value": "You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string and sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nSteps:\n1. Read the input string carefully.\n2. Identify and extract all the numerical values mentioned.\n3. Sum up the extracted numerical values.\n4. Provide the final answer in the required format.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19",
+                                    "eval_score": null,
+                                    "method": "ADD new elements(instruction) + Illicit reasoning",
+                                    "reasoning": "The current variable is performing well with an eval score of 1.0. However, to further enhance clarity and ensure the model processes the input efficiently, we can add a step-by-step process in the instruction. This will help the model to break down the task into smaller, manageable parts, ensuring accuracy and consistency in the output. Additionally, we will remove any unnecessary words to maintain brevity and clarity."
+                                },
+                                {
+                                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                                    "value": "You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string, then sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19",
+                                    "eval_score": null,
+                                    "method": "ADD new elements(instruction) + Illicit reasoning",
+                                    "reasoning": "The current variable is already performing well with an eval score of 1.0. To further enhance clarity and ensure the model processes the input efficiently, we can add a step-by-step process in the instruction. This will help the model to break down the task into smaller, manageable parts, ensuring accuracy and consistency in the output. Additionally, we will remove any unnecessary words to maintain brevity and clarity. This approach differs from the previous attempt by focusing on adding a step-by-step process rather than just removing unnecessary words."
+                                },
+                                {
+                                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                                    "value": "You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string and sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nSteps:\n1. Read the input string carefully.\n2. Identify and extract all numerical values from the string.\n3. Sum up all the identified numerical values.\n4. Provide the final sum in the specified format.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19",
+                                    "eval_score": null,
+                                    "method": "ADD new elements(instruction) + Illicit reasoning",
+                                    "reasoning": "The current variable is performing well with an eval score of 1.0, indicating that it meets the requirements without any noticeable errors. However, to further enhance clarity and ensure the model processes the input efficiently, we can add a step-by-step process in the instruction. This will help the model to break down the task into smaller, manageable parts, ensuring accuracy and consistency in the output. Additionally, we will remove any unnecessary words to maintain brevity and clarity. The step-by-step process will explicitly guide the model to identify and sum the numerical values, which will improve the overall understanding and execution of the task."
+                                },
+                                {
+                                    "id": "38d0d6eb-a27d-40f8-91b0-d7d07ece278f",
+                                    "value": "You will answer a reasoning question. Think step by step. Identify all the numerical values in the input string and sum them up. Ensure that only the numerical values are counted and no extraneous counts or misinterpretations are included. Follow these steps:\n1. Read the input string carefully.\n2. Identify all the numerical values present in the string.\n3. Sum up all the identified numerical values.\n4. The last line of your response should be of the following format: 'Answer: $VALUE' where VALUE is a numerical value.\n\nExamples:\n1. Input: {'input_str': 'I have 8 pigs, 4 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 4). Sum them up (8 + 4 = 12).\n   Expected Output: Answer: 12\n\n2. Input: {'input_str': 'I have 8 pigs, 10 cows, and a chicken.'}\n   Reasoning: Identify the numerical values (8, 10). Sum them up (8 + 10 = 18).\n   Expected Output: Answer: 18\n\n3. Input: {'input_str': 'I have 5 books, 4 pens, and 10 pencils.'}\n   Reasoning: Identify the numerical values (5, 4, 10). Sum them up (5 + 4 + 10 = 19).\n   Expected Output: Answer: 19",
+                                    "eval_score": null,
+                                    "method": "ADD new elements(instruction) + Illicit reasoning",
+                                    "reasoning": "To further enhance the clarity and ensure the model processes the input efficiently, we can add a step-by-step process in the instruction. This will help the model to break down the task into smaller, manageable parts, ensuring accuracy and consistency in the output. Additionally, we will remove any unnecessary words to maintain brevity and clarity. The step-by-step process will explicitly guide the model to identify and sum the numerical values, which will improve the overall understanding and execution of the task. This approach differs from the previous attempts by focusing on adding a detailed step-by-step process rather than just removing unnecessary words or adding more instructions."
+                                }
+                            ]
+                        },
+                        "max_past_history": 2,
+                        "max_failed_proposals": 5,
+                        "steps_from_last_improvement": 0
+                    }
+                ]
+            }
+        }
+    }
+}
